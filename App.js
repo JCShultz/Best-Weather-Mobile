@@ -23,6 +23,7 @@ export default class App extends Component {
   //Login screen
   //Create Account screen
   //User screen
+    //able to create lists, save, and filter based on ideal conditions
 
 //flesh out sub-components
   //forms
@@ -57,7 +58,7 @@ export default class App extends Component {
       />
     </View>
     let login = <View style={styles.container}>
-      <Text>login screen</Text>
+      <Text style={text.container}>login screen</Text>
       <StatusBar style="auto" />
       <Button
          onPress = {()=>{this.setState({
@@ -70,7 +71,7 @@ export default class App extends Component {
       />
     </View>
         let create = <View style={styles.container}>
-        <Text>create account screen</Text>
+        <Text style={text.container}>create account screen</Text>
         <StatusBar style="auto" />
         <Button
               onPress = {()=>{this.setState({
