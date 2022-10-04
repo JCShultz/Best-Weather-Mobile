@@ -6,26 +6,37 @@ import { StatusBar } from 'expo-status-bar';
 const Main = (props) => {
 
   let loginView = () => {
-    props.viewLogin(true,false);
+    props.viewLogin(true, false);
   }
 
   let createView = () => {
-    props.viewCreate(true,false);
+    props.viewCreate(true, false);
   }
+
+  let userView = () => {
+    props.viewUser(true, false);
+  }
+
 
   return (
     <View style={styles.container}>
-      <Text style={text.container}>Best Weather Mobile</Text>
+      <Text style={styles.text}>Best Weather Mobile</Text>
       <StatusBar style="auto" />
       <Button
-        onPress={() => {loginView()}}
+        onPress={() => { loginView() }}
         title="Login"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
       <Button
-        onPress={() => {createView()}}
+        onPress={() => { createView() }}
         title="Create Account"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
+      <Button
+        onPress={() => { userView() }}
+        title="Continue"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
@@ -40,13 +51,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    fontWeight: "bold",
+    fontSize: "30pt",
+    color: '#841584'
+  }
 })
 
-const text = StyleSheet.create({
-  container: {
-    fontWeight: "bold",
-    fontSize: "30pt"
-  },
-});
+
 
 export default Main;

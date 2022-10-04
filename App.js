@@ -56,42 +56,21 @@ export default class App extends Component {
     });
   }
 
-  render() {
-    let main = <View style={styles.container}>
-      <Text style={text.container}>Best Weather Mobile</Text>
-      <StatusBar style="auto" />
-      <Button
-        onPress={() => {
-          this.setState({
-            loginView: true,
-            mainView: false
-          })
-        }}
-        title="Login"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={() => {
-          this.setState({
-            createView: true,
-            mainView: false
-          })
-        }}
-        title="Create Account"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-    </View>
+  UserView = (bool1, bool2) => {
+    this.setState({
+      userView: bool1,
+      mainView: bool2
+    });
+  }
 
+  render() {
 
     return (
       <>
-        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView}/>}
-        {/* {this.state.mainView && main} */}
+        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView}/>}
         {this.state.loginView && <Login view={this.LoginView} />}
         {this.state.createView && <Create view={this.CreateView} />}
-        {this.state.userView && user}
+        {this.state.userView && <User view={this.UserView}/>}
       </>
     );
   }
@@ -106,12 +85,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
-
-
-const text = StyleSheet.create({
-  container: {
+  text: {
     fontWeight: "bold",
     fontSize: "30pt"
-  },
+  }
 });
