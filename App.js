@@ -21,7 +21,7 @@ export default class App extends Component {
 
   render() {
     let main = <View style={styles.container}>
-      <Text>Best Weather Mobile</Text>
+      <Text>Best Weather Mobile App</Text>
       <StatusBar style="auto" />
       <Button
         onPress={() => {this.state.mainView = "false"}}
