@@ -11,12 +11,14 @@ export default class App extends Component {
       main: "true"
     }
   }
+
+
   render() {
     let main = <View style={styles.container}>
       <Text>Best Weather Mobile</Text>
       <StatusBar style="auto" />
       <Button
-        onPress={this.state.main = "false"}
+        onPress={()=>this.state.main = "false"}
         title="Login"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
@@ -31,15 +33,16 @@ export default class App extends Component {
       <>
         {this.state.main && main}
       </>
-
     );
   }
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'darkseagreen',
     alignItems: 'center',
     justifyContent: 'center',
   },
