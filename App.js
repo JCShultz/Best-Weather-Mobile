@@ -24,7 +24,6 @@ export default class App extends Component {
         onPress = {()=>{this.setState({
           loginView: true,
           mainView: false
-
         })}}
         title="Login"
         color="#841584"
@@ -32,6 +31,7 @@ export default class App extends Component {
       />
       <Button
         // onPress={() => { this.state.createView = false }}
+
         title="Create Account"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
