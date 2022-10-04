@@ -3,6 +3,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+import Login from "./client/Login";
+import Create from "./client/Create";
+import User from "./client/User";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +18,10 @@ export default class App extends Component {
   }
 
 
-
+//turn these variables into functional components for separations of concerns
+  //Login screen
+  //Create Account screen
+  //User screen
 
   render() {
     let main = <View style={styles.container}>
