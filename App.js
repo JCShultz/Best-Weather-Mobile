@@ -10,7 +10,6 @@ export default class App extends Component {
       loginView: false,
       mainView: true,
       createView: false
-
     }
   }
 
@@ -22,10 +21,11 @@ export default class App extends Component {
       <Text>Best Weather Mobile App</Text>
       <StatusBar style="auto" />
       <Button
-        // onPress = {this.setState({
-        //   mainView: false,
-        //   loginVIew: true
-        // })}
+        onPress = {()=>{this.setState({
+          loginView: true,
+          mainView: false
+
+        })}}
         title="Login"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
@@ -38,13 +38,13 @@ export default class App extends Component {
       />
     </View>
     let login = <View style={styles.container}>
-      <Text>login</Text>
+      <Text>login screen</Text>
       <StatusBar style="auto" />
     </View>
     return (
       <>
         {this.state.mainView && main}
-        {this.state.loginVew && login}
+        {this.state.loginView && login}
       </>
     );
   }
