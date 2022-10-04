@@ -7,16 +7,14 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginView: "false",
-      mainView: "true",
-      createView: "false"
+      loginView: false,
+      mainView: true,
+      createView: false
 
     }
   }
 
-  onComponentMount=()=>{
 
-  }
 
 
   render() {
@@ -24,21 +22,29 @@ export default class App extends Component {
       <Text>Best Weather Mobile App</Text>
       <StatusBar style="auto" />
       <Button
-        onPress={() => {this.state.mainView = "false"}}
+        // onPress = {this.setState({
+        //   mainView: false,
+        //   loginVIew: true
+        // })}
         title="Login"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
       <Button
-        onPress={() => {this.state.createView = "false"}}
+        // onPress={() => { this.state.createView = false }}
         title="Create Account"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
     </View>
+    let login = <View style={styles.container}>
+      <Text>login</Text>
+      <StatusBar style="auto" />
+    </View>
     return (
       <>
         {this.state.mainView && main}
+        {this.state.loginVew && login}
       </>
     );
   }
