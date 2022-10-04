@@ -13,19 +13,29 @@ export default class App extends Component {
     this.state = {
       loginView: false,
       mainView: true,
-      createView: false
+      createView: false,
+      userView: false
     }
   }
 
-
+//TODO:
 //turn these variables into functional components for separations of concerns
   //Login screen
   //Create Account screen
   //User screen
 
+//flesh out sub-components
+  //forms
+
+//Build out Backend
+  //express server
+  //db setup(MONGO_DB)
+
+//API functionality
+
   render() {
     let main = <View style={styles.container}>
-      <Text>Best Weather Mobile App home screen</Text>
+      <Text style={text.container}>Best Weather Mobile</Text>
       <StatusBar style="auto" />
       <Button
         onPress = {()=>{this.setState({
@@ -90,5 +100,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'darkseagreen',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+});
+
+
+const text = StyleSheet.create({
+  container: {
+    fontWeight: "bold",
+    fontSize: "30pt"
   },
 });
