@@ -23,17 +23,18 @@ const Main = (props) => {
       <Text style={styles.text}>Best Weather Mobile</Text>
       <StatusBar style="auto" />
       <Button
-        onPress={() => { loginView() }}
-        title="Login"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
         onPress={() => { createView() }}
         title="Create Account"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
+      <Button
+        onPress={() => { loginView() }}
+        title="Login"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
+
       <Button
         onPress={() => { userView() }}
         title="Continue"
@@ -58,8 +59,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: "30pt",
     textShadowColor: 'black',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 1
+    textShadowOffset: {width: .75, height: .75},
+    textShadowRadius: .75
   }
 })
 

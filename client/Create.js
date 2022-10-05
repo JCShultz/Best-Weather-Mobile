@@ -16,7 +16,7 @@ const Create = (props) =>{
       <TextInput placeholder="username" style={styles.input}/>
       <TextInput placeholder="password" style={styles.input}/>
       <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btntext}>Create</Text>
+        <Text style={styles.btntext}>Create Account</Text>
       </TouchableOpacity>
       <Button
         onPress = {()=>{changeView()}}

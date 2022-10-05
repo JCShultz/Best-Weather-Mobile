@@ -65,6 +65,7 @@ export default class User extends Component {
           return <Button
             // onPress={()=>{}
             title={item}
+            key={Math.random ()}
             color="#841584"
           />
         })}
@@ -91,9 +92,14 @@ const styles = StyleSheet.create({
   text: {
     color: "#841584",
     fontWeight: "bold",
-    fontSize: "30pt"
+    fontSize: "30pt",
+    textShadowColor: 'black',
+    textShadowOffset: {width: .75, height: .75},
+    textShadowRadius: .75
   },
   map: {
+    borderColor: 'black',
+    borderWidth: 5,
     borderRadius: 15,
     margin: 10,
     marginTop: 40,
