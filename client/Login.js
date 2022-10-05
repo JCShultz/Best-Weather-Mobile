@@ -38,9 +38,11 @@ const styles = StyleSheet.create({
     height: 60,
     width: '80%',
     padding: 8,
+    paddingLeft: 20,
     margin: 5,
     fontSize: 16,
-    backgroundColor: 'lightgrey'
+    backgroundColor: 'lightgrey',
+    borderRadius: 10
   },
   btn: {
     padding: 9,

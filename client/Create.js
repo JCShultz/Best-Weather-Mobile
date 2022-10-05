@@ -39,10 +39,12 @@ const styles = StyleSheet.create({
   input: {
     height: 60,
     width: '80%',
+    paddingLeft: 20,
     padding: 8,
     margin: 5,
     fontSize: 16,
-    backgroundColor: 'lightgrey'
+    backgroundColor: 'lightgrey',
+    borderRadius: 10
   },
   btn: {
     padding: 9,

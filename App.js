@@ -78,7 +78,7 @@ export default class App extends Component {
   }
 
   //This function:
-  //updates the state by the coordinates of the long press
+  //updates the state by the coordinates of the long press on the map on the user page
   UpdateCoordinates = (lat, long) =>{
     this.setState({
       coordinates: {
@@ -115,6 +115,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "bold",
-    fontSize: "30pt"
+    fontSize: "30pt",
+    textShadowColor: 'black',
+    textShadowOffset: {width: 5, height: 5},
+    textShadowRadius: 5
   }
 });

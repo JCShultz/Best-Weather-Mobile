@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Dimensions} from 'react-native';
 import MapView from 'react-native-maps';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 
 import { StatusBar } from 'expo-status-bar';
@@ -10,15 +11,12 @@ export default class User extends Component {
     super(props);
     this.state = {
       list: [
-        "location1",
-        "location2",
-        "location3",
-        "location4",
-        "location5"
-      ],
-      map: {
-      //for locations
-      }
+        "Boulder, CO",
+        "Vedauwoo, WY",
+        "Turkey Rocks, CO",
+        "Red Cliff, CO",
+        "Rocky Mountain National Park, CO"
+      ]
     }
   }
 
@@ -37,6 +35,7 @@ export default class User extends Component {
 
   //TODO:
   //ability to remove items from list
+  //drop downs for sorting and list change (skiing/climbing)
   //sorting list by precip, cloud cover and others
 
 
@@ -60,10 +59,11 @@ export default class User extends Component {
             userInterfaceStyle={'dark'}
         />
         <Text style={styles.text}>Saved Locations</Text>
+
         <StatusBar style="auto" />
         {this.state.list.map((item)=>{
           return <Button
-            // onPress={()=>{this.locationView()}}
+            // onPress={()=>{}
             title={item}
             color="#841584"
           />
@@ -91,9 +91,10 @@ const styles = StyleSheet.create({
   text: {
     color: "#841584",
     fontWeight: "bold",
-    fontSize: "30pt",
+    fontSize: "30pt"
   },
   map: {
+    borderRadius: 15,
     margin: 10,
     marginTop: 40,
     height: '60%',

@@ -12,9 +12,12 @@ const SaveLocation = (props) =>{
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btntext}>Save Location</Text>
-      </TouchableOpacity>
+      <Button
+        onPress = {()=>{changeView()}}
+        title="Save Location"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
       <Text>{props.coords.lat}</Text>
       <Text>{props.coords.long}</Text>
       <Button

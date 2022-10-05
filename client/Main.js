@@ -5,14 +5,14 @@ import { StatusBar } from 'expo-status-bar';
 
 const Main = (props) => {
 
+  //These functions:
+  //toggle state in App.js to change the view
   let loginView = () => {
     props.viewLogin(true, false);
   }
-
   let createView = () => {
     props.viewCreate(true, false);
   }
-
   let userView = () => {
     props.viewUser(true, false);
   }
@@ -54,7 +54,12 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "bold",
     fontSize: "30pt",
-    color: '#841584'
+    color: '#841584',
+    fontWeight: "bold",
+    fontSize: "30pt",
+    textShadowColor: 'black',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 1
   }
 })
 
