@@ -14,7 +14,10 @@ export default class User extends Component {
         "location3",
         "location4",
         "location5"
-      ]
+      ],
+      map: {
+      //for locations
+      }
     }
   }
 
@@ -33,6 +36,9 @@ export default class User extends Component {
               longitude: -122.4324,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
+            }}
+            onLongPress={(e)=>{
+              console.log(e.nativeEvent.coordinate)
             }}
         />
         <Text style={styles.text}>Saved Locations</Text>
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
   map: {
     margin: 20,
     height: '60%',
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFillObject
   }
 })
 
