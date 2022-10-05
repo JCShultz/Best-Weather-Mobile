@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Dimensions} from 'react-native';
 import MapView from 'react-native-maps';
 
+
 import { StatusBar } from 'expo-status-bar';
 
 export default class User extends Component {
@@ -25,21 +26,38 @@ export default class User extends Component {
     this.props.view(false, true)
   }
 
+  SaveLocationView = () => {
+    this.props.viewSave(true, false, false)
+  }
+
+  PassLocationCoordinate = (lat, long) => {
+    this.props.update(lat,long)
+  }
+
+
+  //TODO:
+  //ability to remove items from list
+  //sorting list by precip, cloud cover and others
+
 
   render() {
     return (
       <View style={styles.container}>
         <MapView
             style={styles.map}
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
             onLongPress={(e)=>{
-              console.log(e.nativeEvent.coordinate)
+              console.log(e.nativeEvent.coordinate);
+              //modal for saving locations
+              this.SaveLocationView();
+              this.PassLocationCoordinate(e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude);
+
             }}
+            region={this.props.coordinate}
+            showsUserLocation={true}
+            showsMyLocationButton={true}
+            showsScale={true}
+            showsCompass={true}
+            userInterfaceStyle={'dark'}
         />
         <Text style={styles.text}>Saved Locations</Text>
         <StatusBar style="auto" />
@@ -76,7 +94,8 @@ const styles = StyleSheet.create({
     fontSize: "30pt",
   },
   map: {
-    margin: 20,
+    margin: 10,
+    marginTop: 40,
     height: '60%',
     ...StyleSheet.absoluteFillObject
   }
