@@ -21,20 +21,9 @@ export default class App extends Component {
 
   //TODO:
 
-  //turn these variables into functional components for separations of concerns
-
-  //Login screen
-  //will take you to the user screen
-  //Create Account screen
-  //will take you to the login screen
-
-
   //PROTECTED BY LOGIN:
   //User screen
   //able to create lists, save, and filter based on ideal conditions
-
-  //flesh out sub-components
-  //forms
 
   //Build out Backend
   //express server
