@@ -3,31 +3,54 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'rea
 
 import { StatusBar } from 'expo-status-bar';
 
-const SaveLocation = (props) =>{
-
-  let changeView=()=>{
-    props.view(false, true);
+class SaveLocation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location:''
+    }
   }
 
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Button
-        onPress = {()=>{changeView()}}
-        title="Save Location"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Text>{props.coords.lat}</Text>
-      <Text>{props.coords.long}</Text>
-      <Button
-        onPress = {()=>{changeView()}}
-        title="Back"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-    </View>
-  )
+
+  changeView = () => {
+    this.props.view(false, true);
+  }
+
+  getForecast = () => {
+    console.log("req")
+  }
+
+  updateState = (text) =>{
+    this.setState({
+      location: text
+    })
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <TextInput placeholder="enter name for location" style={styles.input} onChangeText={(text)=>{this.updateState(text)}}/>
+        <Button
+          onPress={
+            () => {
+              changeView();
+              () => { getForecast() }
+            }}
+          title="Save Location"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <Text>{this.props.coords.lat}</Text>
+        <Text>{this.props.coords.long}</Text>
+        <Button
+          onPress={() => { changeView() }}
+          title="Back"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -44,6 +67,16 @@ const styles = StyleSheet.create({
     margin: 5,
     fontSize: 16,
     backgroundColor: 'lightgrey'
+  },
+  input: {
+    height: 60,
+    width: '80%',
+    padding: 8,
+    paddingLeft: 20,
+    margin: 5,
+    fontSize: 16,
+    backgroundColor: 'lightgrey',
+    borderRadius: 10
   },
   btn: {
     padding: 9,
