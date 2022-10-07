@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     paddingTop: 50
   },
   forecast: {
-    padding: 10
+    padding: 20
   },
   scroll: {
     backgroundColor: 'grey'
