@@ -29,8 +29,8 @@ export default class User extends Component {
   }
 
   //toggles to location detail page and passes selected location info: {name: , lat: , long:} to APP
-  viewDetail = (itemInfo) => {
-    this.props.viewDetail(true, false, itemInfo)
+  viewDetail = (itemInfo, forecasts) => {
+    this.props.viewDetail(true, false, itemInfo, forecasts)
   }
 
   //toggles the save location view
@@ -51,8 +51,7 @@ export default class User extends Component {
   //drop downs for sorting and list change (skiing/climbing)
   //sorting list by precip, cloud cover and others
 
-  //make api call to get all forecast data for each list item when component mounts
-
+  //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
     console.log(this.props)
     if (this.props.list.length > 0) {
@@ -110,7 +109,14 @@ export default class User extends Component {
             title={item.name}
             key={Math.random()}
             color="#841584"
-            onPress={() => { this.viewDetail(item) }}
+            onPress={() => {
+              this.state.forecasts.map((x)=>{
+                if(item.name === x.name){
+                  this.viewDetail(item, x.forecasts)
+                }
+              })
+
+            }}
           />
         })}
         <Button

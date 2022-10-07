@@ -25,7 +25,8 @@ export default class App extends Component {
         lat:0
       },
       list: [],
-      selectedItem: {}
+      selectedItem: {},
+      forecastInfo: []
     }
   }
 
@@ -73,11 +74,12 @@ export default class App extends Component {
     });
   }
 
-  DetailView = (bool1, bool2, itemInfo) => {
+  DetailView = (bool1, bool2, itemInfo, forecasts) => {
     this.setState({
       locationDetailView: bool1,
       userView: bool2,
-      selectedItem: itemInfo
+      selectedItem: itemInfo,
+      forecastInfo: forecasts
     });
   }
 
@@ -115,7 +117,7 @@ export default class App extends Component {
         {this.state.createView && <Create view={this.CreateView} />}
         {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list}/>}
         {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation}/>}
-        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem}/>}
+        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo}/>}
       </>
     );
   }

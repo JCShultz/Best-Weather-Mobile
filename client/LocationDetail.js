@@ -28,7 +28,7 @@ const LocationDetail = (props) =>{
   //     console.log(err);
   //   })
 
-
+  console.log("HERE",props)
 
 
   return (
