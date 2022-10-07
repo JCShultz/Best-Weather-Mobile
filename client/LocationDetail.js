@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
+import axios from "axios";
+
 
 const LocationDetail = (props) =>{
   //should get location in props
@@ -10,6 +12,25 @@ const LocationDetail = (props) =>{
     props.view(false, true);
   }
   console.log(props);
+
+  axios.get(`https://api.weather.gov/points/${props.item.lat},${props.item.long}`)
+    .then((res)=>{
+      //console.log(res.data);
+      axios.get("https://api.weather.gov/gridpoints/SHV/55,42/forecast")
+        .then((res)=>{
+          console.log(res.data.properties);
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
+
+
+
   return (
 
     <View style={styles.container}>
