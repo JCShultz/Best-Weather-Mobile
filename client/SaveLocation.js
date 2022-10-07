@@ -11,15 +11,11 @@ class SaveLocation extends React.Component {
     }
   }
 
-
+  //changes view back to User page and passes location info the User page
   changeView = () => {
     this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
     this.props.view(false, true);
 
-  }
-
-  getForecast = () => {
-    console.log("req")
   }
 
   updateState = (text) =>{
