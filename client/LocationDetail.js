@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
 import axios from "axios";
 
 
-const LocationDetail = (props) =>{
+const LocationDetail = (props) => {
   //should get location in props
 
   let changeView = () => {
@@ -28,17 +28,25 @@ const LocationDetail = (props) =>{
   //     console.log(err);
   //   })
 
-  console.log("HERE",props)
-
-
   return (
-
     <View style={styles.container}>
       <StatusBar style="auto" />
       <Text style={styles.btntext}>{props.item.name}</Text>
       <Text>{props.item.lat}, {props.item.long}</Text>
+      <ScrollView style={styles.scroll}>
+        {props.forecasts.map((item) => {
+          return <View style={styles.forecast}>
+            <Text>{item.name}:</Text>
+            <Text>{item.detailedForecast}</Text>
+            <Text>Temperature: {item.temperature}</Text>
+            <Text>Wind Speed: {item.windSpeed}</Text>
+            <Text>Wind Direction: {item.windDirection}</Text>
+          </View>
+        })}
+
+      </ScrollView>
       <Button
-        onPress = {()=>{changeView()}}
+        onPress={() => { changeView() }}
         title="Back"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
@@ -53,6 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'darkseagreen',
     alignItems: 'center',
     justifyContent: 'center',
+    overFlow: 'auto'
   },
   input: {
     height: 60,
@@ -71,7 +80,14 @@ const styles = StyleSheet.create({
   btntext: {
     color: '#841584',
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingTop: 50
+  },
+  forecast: {
+    padding: 10
+  },
+  scroll: {
+    backgroundColor: 'grey'
   }
 })
 

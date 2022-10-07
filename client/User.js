@@ -53,21 +53,20 @@ export default class User extends Component {
 
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
-    console.log(this.props)
+    //onsole.log(this.props)
     if (this.props.list.length > 0) {
       this.props.list.map((item) => {
         axios.get(`https://api.weather.gov/points/${item.lat},${item.long}`)
           .then((res) => {
             axios.get(res.data.properties.forecast)
               .then((res) => {
-                console.log("forecast: ", res.data.properties.periods);
+                //console.log("forecast: ", res.data.properties.periods);
                 this.state.forecasts.push({
                   name: item.name,
                   lat: item.lat,
                   long: item.long,
                   forecasts: res.data.properties.periods
                 })
-                console.log("this is state: ", this.state.forecasts)
               })
               .catch((err) => {
                 console.log(err);
@@ -110,8 +109,8 @@ export default class User extends Component {
             key={Math.random()}
             color="#841584"
             onPress={() => {
-              this.state.forecasts.map((x)=>{
-                if(item.name === x.name){
+              this.state.forecasts.map((x) => {
+                if (item.name === x.name) {
                   this.viewDetail(item, x.forecasts)
                 }
               })
@@ -155,6 +154,9 @@ const styles = StyleSheet.create({
     marginTop: 40,
     height: '60%',
     ...StyleSheet.absoluteFillObject
+  },
+  listItem: {
+    display: 'inline block'
   }
 })
 
