@@ -8,6 +8,7 @@ import Create from "./client/Create";
 import User from "./client/User";
 import Main from "./client/Main";
 import SaveLocation from './client/SaveLocation';
+import LocationDetail from './client/LocationDetail';
 
 export default class App extends Component {
   constructor(props) {
@@ -18,10 +19,13 @@ export default class App extends Component {
       createView: false,
       userView: false,
       saveLocationView: false,
+      locationDetailView: false,
       coordinates: {
         long:0,
         lat:0
-      }
+      },
+      list: [],
+      selectedItem: {}
     }
   }
 
@@ -69,6 +73,14 @@ export default class App extends Component {
     });
   }
 
+  DetailView = (bool1, bool2, itemInfo) => {
+    this.setState({
+      locationDetailView: bool1,
+      userView: bool2,
+      selectedItem: itemInfo
+    });
+  }
+
   SaveLocationView = (bool1, bool2, bool3) => {
     this.setState({
       saveLocationView: bool1,
@@ -88,6 +100,10 @@ export default class App extends Component {
     })
   }
 
+  SaveLocation = (name, lat, long) => {
+    this.state.list.push({name: name, lat: lat, long: long});
+  }
+
 
 
   render() {
@@ -97,8 +113,9 @@ export default class App extends Component {
         {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView}/>}
         {this.state.loginView && <Login view={this.LoginView} />}
         {this.state.createView && <Create view={this.CreateView} />}
-        {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} update={this.UpdateCoordinates}/>}
-        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates}/>}
+        {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list}/>}
+        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation}/>}
+        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem}/>}
       </>
     );
   }

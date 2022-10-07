@@ -13,7 +13,9 @@ class SaveLocation extends React.Component {
 
 
   changeView = () => {
+    this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
     this.props.view(false, true);
+
   }
 
   getForecast = () => {
@@ -25,7 +27,10 @@ class SaveLocation extends React.Component {
       location: text
     })
   }
+
+
   render() {
+
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
@@ -33,8 +38,7 @@ class SaveLocation extends React.Component {
         <Button
           onPress={
             () => {
-              changeView();
-              () => { getForecast() }
+              this.changeView();
             }}
           title="Save Location"
           color="#841584"
@@ -43,7 +47,11 @@ class SaveLocation extends React.Component {
         <Text>{this.props.coords.lat}</Text>
         <Text>{this.props.coords.long}</Text>
         <Button
-          onPress={() => { changeView() }}
+          onPress={
+            () => {
+              this.changeView();
+            }
+          }
           title="Back"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"

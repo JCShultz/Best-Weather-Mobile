@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Dimensions} from 'react-native';
 import MapView from 'react-native-maps';
 import DropDownPicker from 'react-native-dropdown-picker';
+import LocationDetail from './LocationDetail';
 
 
 import { StatusBar } from 'expo-status-bar';
@@ -24,6 +25,10 @@ export default class User extends Component {
     this.props.view(false, true)
   }
 
+  viewDetail = (itemInfo) => {
+    this.props.viewDetail(true, false, itemInfo)
+  }
+
   SaveLocationView = () => {
     this.props.viewSave(true, false, false)
   }
@@ -31,6 +36,8 @@ export default class User extends Component {
   PassLocationCoordinate = (lat, long) => {
     this.props.update(lat,long)
   }
+
+
 
 
   //TODO:
@@ -61,12 +68,13 @@ export default class User extends Component {
         <Text style={styles.text}>Saved Locations</Text>
 
         <StatusBar style="auto" />
-        {this.state.list.map((item)=>{
+        {this.props.list.map((item)=>{
           return <Button
             // onPress={()=>{}
-            title={item}
+            title={item.name}
             key={Math.random ()}
             color="#841584"
+            onPress={()=>{this.viewDetail(item)}}
           />
         })}
         <Button
