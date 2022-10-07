@@ -51,6 +51,9 @@ export default class User extends Component {
   //drop downs for sorting and list change (skiing/climbing)
   //sorting list by precip, cloud cover and others
 
+  //write algorithm that iterates through the detailed forecast of each item and find the word "precipitation"
+   //then checks the percentage value after and sorts list bases on these values
+
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
     //onsole.log(this.props)
