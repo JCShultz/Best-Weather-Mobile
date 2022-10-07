@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
 import DropDownPicker from 'react-native-dropdown-picker';
 import LocationDetail from './LocationDetail';
+import axios from 'axios';
 
 
 import { StatusBar } from 'expo-status-bar';
@@ -17,7 +18,8 @@ export default class User extends Component {
         "Turkey Rocks, CO",
         "Red Cliff, CO",
         "Rocky Mountain National Park, CO"
-      ]
+      ],
+      forecasts: []
     }
   }
 
@@ -38,7 +40,7 @@ export default class User extends Component {
 
   //passes the location coords to APP
   PassLocationCoordinate = (lat, long) => {
-    this.props.update(lat,long)
+    this.props.update(lat, long)
   }
 
 
@@ -49,36 +51,66 @@ export default class User extends Component {
   //drop downs for sorting and list change (skiing/climbing)
   //sorting list by precip, cloud cover and others
 
+  //make api call to get all forecast data for each list item when component mounts
+
+  componentDidMount() {
+    console.log(this.props)
+    if (this.props.list.length > 0) {
+      this.props.list.map((item) => {
+        axios.get(`https://api.weather.gov/points/${item.lat},${item.long}`)
+          .then((res) => {
+            axios.get(res.data.properties.forecast)
+              .then((res) => {
+                console.log("forecast: ", res.data.properties.periods);
+                this.state.forecasts.push({
+                  name: item.name,
+                  lat: item.lat,
+                  long: item.long,
+                  forecasts: res.data.properties.periods
+                })
+                console.log("this is state: ", this.state.forecasts)
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      })
+    }
+  }
+
 
   render() {
     return (
       <View style={styles.container}>
         <MapView
-            style={styles.map}
-            onLongPress={(e)=>{
-              console.log(e.nativeEvent.coordinate);
-              //modal for saving locations
-              this.SaveLocationView();
-              this.PassLocationCoordinate(e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude);
+          style={styles.map}
+          onLongPress={(e) => {
+            console.log(e.nativeEvent.coordinate);
+            //modal for saving locations
+            this.SaveLocationView();
+            this.PassLocationCoordinate(e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude);
 
-            }}
-            region={this.props.coordinate}
-            showsUserLocation={true}
-            showsMyLocationButton={true}
-            showsScale={true}
-            showsCompass={true}
-            userInterfaceStyle={'dark'}
+          }}
+          region={this.props.coordinate}
+          showsUserLocation={true}
+          showsMyLocationButton={true}
+          showsScale={true}
+          showsCompass={true}
+          userInterfaceStyle={'dark'}
         />
         <Text style={styles.text}>Saved Locations</Text>
 
         <StatusBar style="auto" />
-        {this.props.list.map((item)=>{
+        {this.props.list.map((item) => {
           return <Button
             // onPress={()=>{}
             title={item.name}
-            key={Math.random ()}
+            key={Math.random()}
             color="#841584"
-            onPress={()=>{this.viewDetail(item)}}
+            onPress={() => { this.viewDetail(item) }}
           />
         })}
         <Button
@@ -106,7 +138,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: "30pt",
     textShadowColor: 'black',
-    textShadowOffset: {width: .75, height: .75},
+    textShadowOffset: { width: .75, height: .75 },
     textShadowRadius: .75
   },
   map: {
