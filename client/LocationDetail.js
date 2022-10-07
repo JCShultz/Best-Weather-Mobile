@@ -15,10 +15,10 @@ const LocationDetail = (props) =>{
 
   axios.get(`https://api.weather.gov/points/${props.item.lat},${props.item.long}`)
     .then((res)=>{
-      //console.log(res.data);
-      axios.get("https://api.weather.gov/gridpoints/SHV/55,42/forecast")
+      console.log('res1: ', res.data.properties);
+      axios.get(res.data.properties.forecast)
         .then((res)=>{
-          console.log(res.data.properties);
+          console.log("forecast: ", res.data.properties.periods);
         })
         .catch((err)=>{
           console.log(err);
