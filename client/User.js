@@ -21,18 +21,22 @@ export default class User extends Component {
     }
   }
 
+  //toggles back to main page
   userView = () => {
     this.props.view(false, true)
   }
 
+  //toggles to location detail page and passes selected location info: {name: , lat: , long:} to APP
   viewDetail = (itemInfo) => {
     this.props.viewDetail(true, false, itemInfo)
   }
 
+  //toggles the save location view
   SaveLocationView = () => {
     this.props.viewSave(true, false, false)
   }
 
+  //passes the location coords to APP
   PassLocationCoordinate = (lat, long) => {
     this.props.update(lat,long)
   }

@@ -18,6 +18,7 @@ class SaveLocation extends React.Component {
 
   }
 
+  //uses input to update state
   updateState = (text) =>{
     this.setState({
       location: text

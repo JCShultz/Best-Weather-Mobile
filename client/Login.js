@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 
 const Login = (props) =>{
 
+  //toggles login view
   let changeView=()=>{
     props.view(false,true);
   }
