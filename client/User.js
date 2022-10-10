@@ -59,7 +59,7 @@ export default class User extends Component {
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
     //onsole.log(this.props)
-    axios.get
+
     if (this.props.list.length > 0) {
       this.props.list.map((item) => {
         let latitude = item.lat.toString();
@@ -69,7 +69,14 @@ export default class User extends Component {
           long: longitude
         })
         .then((res)=>{
-          console.log(res.data);
+          console.log('response: ', res.data);
+          this.state.forecasts.push({
+            name: item.name,
+            forecast: res.data,
+            lat: item.lat,
+            long: item.long
+          })
+          console.log(this.state.forecasts)
         })
         .catch((err) => {
           console.log(err);
@@ -103,14 +110,13 @@ export default class User extends Component {
         <StatusBar style="auto" />
         {this.props.list.map((item) => {
           return <Button
-            // onPress={()=>{}
             title={item.name}
             key={Math.random()}
             color="#841584"
             onPress={() => {
               this.state.forecasts.map((x) => {
                 if (item.name === x.name) {
-                  this.viewDetail(item, x.forecasts)
+                  this.viewDetail(item, x.forecast)
                 }
               })
 

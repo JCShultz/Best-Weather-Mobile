@@ -2,8 +2,8 @@ const axios = require("axios");
 
 exports.retrieve = (req, res) => {
   //enter in axios req to NOAA API
-  console.log('here');
-  console.log('req.body: ', req.body);
+  //console.log('here');
+  //console.log('req.body: ', req.body);
   axios.get(`https://api.weather.gov/points/${req.body.lat},${req.body.long}`)
     .then((body) => {
       axios.get(body.data.properties.forecast)
