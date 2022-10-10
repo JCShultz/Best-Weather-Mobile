@@ -54,29 +54,38 @@ export default class User extends Component {
   //write algorithm that iterates through the detailed forecast of each item and find the word "precipitation"
    //then checks the percentage value after and sorts list bases on these values
 
+  //sort by wind
+
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
-    //onsole.log(this.props)
+    ///console.log(this.props)
     if (this.props.list.length > 0) {
       this.props.list.map((item) => {
-        axios.get(`https://api.weather.gov/points/${item.lat},${item.long}`)
-          .then((res) => {
-            axios.get(res.data.properties.forecast)
-              .then((res) => {
-                //console.log("forecast: ", res.data.properties.periods);
-                this.state.forecasts.push({
-                  name: item.name,
-                  lat: item.lat,
-                  long: item.long,
-                  forecasts: res.data.properties.periods
-                })
-              })
-              .catch((err) => {
-                console.log(err);
-              })
+        // axios.get(`https://api.weather.gov/points/${item.lat},${item.long}`)
+        //   .then((res) => {
+        //     axios.get(res.data.properties.forecast)
+        //       .then((res) => {
+        //         //console.log("forecast: ", res.data.properties.periods);
+        //         this.state.forecasts.push({
+        //           name: item.name,
+        //           lat: item.lat,
+        //           long: item.long,
+        //           forecasts: res.data.properties.periods
+        //         })
+        //       })
+        //       .catch((err) => {
+        //         console.log(err);
+        //       })
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   })
+        axios.post(`/forecast`, {lat: item.lat, long: item.long})
+          .then((res)=>{
+            console.log(res)
           })
-          .catch((err) => {
-            console.log(err);
+          .catch((err)=>{
+            console.log('There is an error in getting: ', err);
           })
       })
     }
