@@ -58,35 +58,22 @@ export default class User extends Component {
 
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
-    ///console.log(this.props)
+    //onsole.log(this.props)
+    axios.get
     if (this.props.list.length > 0) {
       this.props.list.map((item) => {
-        // axios.get(`https://api.weather.gov/points/${item.lat},${item.long}`)
-        //   .then((res) => {
-        //     axios.get(res.data.properties.forecast)
-        //       .then((res) => {
-        //         //console.log("forecast: ", res.data.properties.periods);
-        //         this.state.forecasts.push({
-        //           name: item.name,
-        //           lat: item.lat,
-        //           long: item.long,
-        //           forecasts: res.data.properties.periods
-        //         })
-        //       })
-        //       .catch((err) => {
-        //         console.log(err);
-        //       })
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   })
-        axios.post(`/forecast`, {lat: item.lat, long: item.long})
-          .then((res)=>{
-            console.log(res)
-          })
-          .catch((err)=>{
-            console.log('There is an error in getting: ', err);
-          })
+        let latitude = item.lat.toString();
+        let longitude = item.long.toString();
+        axios.post('http://172.20.10.5:3000/forecast', {
+          lat: latitude,
+          long: longitude
+        })
+        .then((res)=>{
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
       })
     }
   }
