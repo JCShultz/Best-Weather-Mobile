@@ -18,3 +18,9 @@ exports.retrieve = (req, res) => {
       console.log(err);
     })
 }
+
+//retrieve list from db based on user and password
+
+//delete list item from the user list in the db
+
+//add item to the user list in the db

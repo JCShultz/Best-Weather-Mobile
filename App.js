@@ -36,11 +36,13 @@ export default class App extends Component {
   //User screen
   //able to create lists, save, and filter based on ideal conditions
 
-  //Build out Backend
-  //express server
-  //db setup(MONGO_DB)
+  //FRONTEND:
+  //delete list items
+  //add list items
 
-  //API functionality
+  //BACKEND:
+  //req handlers for db interactions
+  //db functionality
 
 
 

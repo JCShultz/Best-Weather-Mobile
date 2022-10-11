@@ -18,7 +18,7 @@ app.use(express.static("public"));
 //REQUEST ROUTES:
 
 
-//REQUESTS FOR INFO FROM NOAA API
+//REQUESTS FOR INFO FROM NOAA API BASED ON LAT,LONG
 //handle get requests for forecast of specific locations
 app.post('/forecast', contr.retrieve);
 

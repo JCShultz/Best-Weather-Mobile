@@ -11,22 +11,7 @@ const LocationDetail = (props) => {
   let changeView = () => {
     props.view(false, true);
   }
-  //console.log(props);
 
-  // axios.get(`https://api.weather.gov/points/${props.item.lat},${props.item.long}`)
-  //   .then((res)=>{
-  //     console.log('res1: ', res.data.properties);
-  //     axios.get(res.data.properties.forecast)
-  //       .then((res)=>{
-  //         console.log("forecast: ", res.data.properties.periods);
-  //       })
-  //       .catch((err)=>{
-  //         console.log(err);
-  //       })
-  //   })
-  //   .catch((err)=>{
-  //     console.log(err);
-  //   })
 
   return (
     <View style={styles.container}>

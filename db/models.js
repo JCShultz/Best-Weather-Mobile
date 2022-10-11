@@ -1,6 +1,8 @@
+const mongoose = require("mongoose");
+
 const userSchema = new mongoose.Schema({
   name: String,
-  pass: String,
+  pass: String,//hash that password
   location1: String,
   location2: String,
   location3: String,
