@@ -27,7 +27,9 @@ export default class App extends Component {
       list: [],
       selectedItem: {},
       forecastInfo: [],
-      createUser: ''
+      createUser: '',
+      userInfo: [],
+      loggedIn: false
     }
   }
 
@@ -113,14 +115,21 @@ export default class App extends Component {
     }
   }
 
+  UpdateUserInfo = (userInfo) =>{
+    this.setState({
+      userInfo: userInfo,
+      loggedIn: true
+    })
+  }
+
 
 
   render() {
-
+    console.log(this.state.loggedIn)
     return (
       <>
-        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView}/>}
-        {this.state.loginView && <Login view={this.LoginView} />}
+        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn}/>}
+        {this.state.loginView && <Login view={this.LoginView} update={this.UpdateUserInfo}/>}
         {this.state.createView && <Create view={this.CreateView} />}
         {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list}/>}
         {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation}/>}

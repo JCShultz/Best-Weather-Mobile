@@ -20,8 +20,7 @@ export default class User extends Component {
         "Red Cliff, CO",
         "Rocky Mountain National Park, CO"
       ],
-      forecasts: [],
-      user: 'Bob'
+      forecasts: []
     }
   }
 

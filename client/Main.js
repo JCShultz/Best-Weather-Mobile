@@ -17,12 +17,12 @@ const Main = (props) => {
     props.viewUser(true, false);
   }
 
-
+  console.log(props)
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Best Weather Mobile</Text>
       <StatusBar style="auto" />
-      <Button
+      {!(props.log) && <><Button
         onPress={() => { createView() }}
         title="Create Account"
         color="#841584"
@@ -33,7 +33,7 @@ const Main = (props) => {
         title="Login"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
-      />
+      /></>}
 
       <Button
         onPress={() => { userView() }}

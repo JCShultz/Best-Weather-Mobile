@@ -1,5 +1,6 @@
 const axios = require("axios");
-const db = require("../db/db.js")
+const db = require("../db/db.js");
+const model = require("../db/models.js");
 
 //retrieves the forecast information from NOAA's API
 exports.retrieve = (req, res) => {
@@ -39,12 +40,9 @@ exports.addUser = (req, res) =>{
 exports.loginUser = (req, res) =>{
   //console.log('in server: ', db.UserItem.find({name: req.body.name}));
   // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
-    db.UserItem.findOne({
-      name: req.body.name,
-      pass: req.body.pass
-    })
+    model.returnUser(req)
     .then((body)=>{
-      //console.log(body)
+      console.log(body)
       res.send(body).status(200).end();
     })
     .catch((err)=>{
