@@ -25,15 +25,15 @@ app.post('/forecast', contr.retrieve);
 
 
 //REQUESTS FOR INFO IN DB:
-//handles get requests for user info
-app.get('/user', (req, res) => {
-  //get location from DB
-  res.send('getting').status(200).end();
-});
 
 
 //handle post requests creating user
 app.post('/user', contr.addUser)
+
+//handles post req to login checks if username and pword is in db and returns user info
+app.post('/login', contr.loginUser)
+
+
 
 //handle post requests for adding locations
 

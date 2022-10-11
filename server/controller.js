@@ -21,20 +21,43 @@ exports.retrieve = (req, res) => {
 
 //add user to db
 exports.addUser = (req, res) =>{
-  db.UserItem.create({
-    name: req.body.name,
-    pass: req.body.pass
-  })
-  .then((body)=>{
-    res.send().status(201).end();
-  })
-  .catch((err)=>{
-    console.log('server: ', err);
-  })
+  //console.log('in server: ', db.UserItem.find({name: req.body.name}));
+  // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
+    db.UserItem.create({
+      name: req.body.name,
+      pass: req.body.pass
+    })
+    .then((body)=>{
+      res.send().status(201).end();
+    })
+    .catch((err)=>{
+      console.log('create: ', err);
+    })
+  // }
 }
 
-//retrieve list from db based on user and password
+exports.loginUser = (req, res) =>{
+  //console.log('in server: ', db.UserItem.find({name: req.body.name}));
+  // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
+    db.UserItem.findOne({
+      name: req.body.name,
+      pass: req.body.pass
+    })
+    .then((body)=>{
+      //console.log(body)
+      res.send(body).status(200).end();
+    })
+    .catch((err)=>{
+      console.log('login: ', err);
+    })
+  // }
+}
 
 //delete list item from the user list in the db
 
 //add item to the user list in the db
+exports.addLocation = (req, res) =>{
+  db.UserItem.finOneAndUpdate(
+    {name: req.body.name},
+  )
+}
