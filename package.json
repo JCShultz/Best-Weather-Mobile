@@ -20,7 +20,8 @@
     "react-native-maps": "0.31.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "mongoose": "^6.6.5"
   },
   "private": true
 }

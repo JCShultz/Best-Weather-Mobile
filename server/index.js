@@ -27,17 +27,15 @@ app.post('/forecast', contr.retrieve);
 //REQUESTS FOR INFO IN DB:
 //handles get requests for user info
 app.get('/user', (req, res) => {
-  //add location to DB
-  console.log("client ping")
-  res.send('create').status(201).end();
-})
+  //get location from DB
+  res.send('getting').status(200).end();
+});
 
 
-//handle post requests for locations
-app.post('/user', (req, res) => {
-  //add location to DB
-  res.send('create').status(201).end();
-})
+//handle post requests creating user
+app.post('/user', contr.addUser)
+
+//handle post requests for adding locations
 
 //handle delete requests for locations
 app.delete('/user', (req, res) => {

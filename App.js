@@ -26,7 +26,8 @@ export default class App extends Component {
       },
       list: [],
       selectedItem: {},
-      forecastInfo: []
+      forecastInfo: [],
+      createUser: ''
     }
   }
 

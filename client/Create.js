@@ -1,32 +1,70 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import axios from "axios";
+import config from '../config.js';
 
 import { StatusBar } from 'expo-status-bar';
 
-const Create = (props) =>{
-
-  let changeView=()=>{
-    props.view(false, true);
+export default class Create extends Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      user: '',
+      pword: ''
+    }
   }
 
+  changeView=()=>{
+    this.props.view(false, true);
+  }
+
+  createUser = (user, pword) => {
+    //axois post to /user with user and pword
+    axios.post(`${config.ip}:${config.srvPort}/user`, {
+      name: this.state.user,
+      pass: this.state.pword
+    })
+    .then((res)=>{
+      console.log(res);
+      this.changeView();
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+
+  onUserChange=(text)=>{
+    this.setState({
+      user: text
+    })
+  }
+
+  onPassChange=(text)=>{
+    this.setState({
+      pword: text
+    })
+  }
+
+  render(){
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      <TextInput placeholder="username" style={styles.input}/>
-      <TextInput placeholder="password" style={styles.input}/>
-      <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btntext}>Create Account</Text>
+      <TextInput placeholder="username" style={styles.input} onChangeText={(text)=>{this.onUserChange(text)}}/>
+      <TextInput placeholder="password" style={styles.input} onChangeText={(text)=>{this.onPassChange(text)}}/>
+      <TouchableOpacity style={styles.btn} onPress={()=>{this.createUser()}}>
+        <Text style={styles.btntext} >Create Account</Text>
       </TouchableOpacity>
       <Button
-        onPress = {()=>{changeView()}}
+        onPress = {()=>{this.changeView()}}
         title="Back"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
-
+      {console.log(this.state)}
     </View>
   )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -57,5 +95,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Create;
 
