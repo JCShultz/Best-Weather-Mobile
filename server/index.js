@@ -29,7 +29,6 @@ app.post('/forecast', contr.retrieve);
 app.get('/user', (req, res) => {
   //add location to DB
   console.log("client ping")
-
   res.send('create').status(201).end();
 })
 
@@ -47,4 +46,4 @@ app.delete('/user', (req, res) => {
 });
 
 app.listen(config.srvPort);
-console.log(`listening at: ${config.srvPort}`);
+console.log(`listening at: ${config.ip}:${config.srvPort}`);

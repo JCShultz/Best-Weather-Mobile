@@ -4,6 +4,7 @@ import MapView from 'react-native-maps';
 import DropDownPicker from 'react-native-dropdown-picker';
 import LocationDetail from './LocationDetail';
 import axios from 'axios';
+import config from '../config.js';
 
 
 import { StatusBar } from 'expo-status-bar';
@@ -58,25 +59,23 @@ export default class User extends Component {
 
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
-    //onsole.log(this.props)
-
     if (this.props.list.length > 0) {
       this.props.list.map((item) => {
         let latitude = item.lat.toString();
         let longitude = item.long.toString();
-        axios.post('http://172.20.10.5:3000/forecast', {
+        axios.post(`${config.ip}:${config.srvPort}/forecast`, {
           lat: latitude,
           long: longitude
         })
         .then((res)=>{
-          console.log('response: ', res.data);
+          //console.log('response: ', res.data);
           this.state.forecasts.push({
             name: item.name,
             forecast: res.data,
             lat: item.lat,
             long: item.long
           })
-          console.log(this.state.forecasts)
+          //console.log(this.state.forecasts)
         })
         .catch((err) => {
           console.log(err);
