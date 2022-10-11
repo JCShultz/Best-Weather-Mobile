@@ -75,7 +75,6 @@ export default class User extends Component {
             lat: item.lat,
             long: item.long
           })
-          //console.log(this.state.forecasts)
         })
         .catch((err) => {
           console.log(err);
@@ -86,6 +85,7 @@ export default class User extends Component {
 
 
   render() {
+    console.log(this.props)
     return (
       <View style={styles.container}>
         <MapView

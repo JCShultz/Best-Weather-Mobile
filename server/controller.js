@@ -22,18 +22,27 @@ exports.retrieve = (req, res) => {
 
 //add user to db
 exports.addUser = (req, res) =>{
-  //console.log('in server: ', db.UserItem.find({name: req.body.name}));
+  model.returnUser(req)
+
+  .then((body)=>{
+    console.log(body)
+    if(body === []){
+      db.UserItem.create({
+        name: req.body.name,
+        pass: req.body.pass
+      })
+      .then((body)=>{
+        res.send().status(201).end();
+      })
+      .catch((err)=>{
+        console.log('create: ', err);
+      })
+    }else{
+      res.send('username taken').status(201).end();
+    }
+  })
   // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
-    db.UserItem.create({
-      name: req.body.name,
-      pass: req.body.pass
-    })
-    .then((body)=>{
-      res.send().status(201).end();
-    })
-    .catch((err)=>{
-      console.log('create: ', err);
-    })
+
   // }
 }
 
@@ -42,7 +51,7 @@ exports.loginUser = (req, res) =>{
   // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
     model.returnUser(req)
     .then((body)=>{
-      console.log(body)
+      console.log('body', body)
       res.send(body).status(200).end();
     })
     .catch((err)=>{

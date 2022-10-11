@@ -17,7 +17,7 @@ const Main = (props) => {
     props.viewUser(true, false);
   }
 
-  console.log(props)
+  console.log("main: ", props)
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Best Weather Mobile</Text>
