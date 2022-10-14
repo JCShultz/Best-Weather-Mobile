@@ -20,7 +20,7 @@ const LocationDetail = (props) => {
       <Text>{props.item.lat}, {props.item.long}</Text>
       <ScrollView style={styles.scroll}>
         {props.forecasts.map((item) => {
-          return <View style={styles.forecast}>
+          return <View style={styles.forecast} key={Math.random()}>
             <Text>{item.name}:</Text>
             <Text>{item.detailedForecast}</Text>
             <Text>Temperature: {item.temperature}</Text>

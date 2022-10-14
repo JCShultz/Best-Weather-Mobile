@@ -40,6 +40,7 @@ exports.addUser = (req, res) =>{
   // }
 }
 
+//login user
 exports.loginUser = (req, res) =>{
   //console.log('in server: ', db.UserItem.find({name: req.body.name}));
   // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
