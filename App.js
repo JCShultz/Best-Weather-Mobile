@@ -132,8 +132,8 @@ export default class App extends Component {
         {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn}/>}
         {this.state.loginView && <Login view={this.LoginView} update={this.UpdateUserInfo}/>}
         {this.state.createView && <Create view={this.CreateView} />}
-        {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list} userInfo={this.state.userInfo}/>}
-        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation}/>}
+        {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn}/>}
+        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation} userInfo={this.state.userInfo}/>}
         {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo}/>}
       </>
     );

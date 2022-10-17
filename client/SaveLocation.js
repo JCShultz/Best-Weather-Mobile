@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
+import axios from 'axios';
 
 class SaveLocation extends React.Component {
   constructor(props) {
@@ -14,8 +15,24 @@ class SaveLocation extends React.Component {
   //changes view back to User page and passes location info the User page
   changeView = () => {
     this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
+//call addLoc
+    this.addLocation(this.state.location, this.props.coords.lat, this.props.coords.long);
     this.props.view(false, true);
+  }
 
+  addLocation = (name, loc, lat, long) => {
+    axios.post('/location', {
+      name: name,
+      locations: loc,
+      latitude: lat,
+      longitude: long
+    })
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch((err)=>{
+      console.log('error in location save: ', err)
+    })
   }
 
   //uses input to update state
@@ -26,8 +43,9 @@ class SaveLocation extends React.Component {
   }
 
 
-  render() {
 
+  render() {
+    console.log(this.props.userInfo)
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />

@@ -28,14 +28,15 @@ app.post('/forecast', contr.retrieve);
 
 
 //handle post requests creating user
-app.post('/user', contr.addUser)
+app.post('/user', contr.addUser);
 
 //handles post req to login checks if username and pword is in db and returns user info
-app.post('/login', contr.loginUser)
-
+app.post('/login', contr.loginUser);
 
 
 //handle post requests for adding locations
+app.post('/location', contr.addLocation);
+
 
 //handle delete requests for locations
 app.delete('/user', (req, res) => {

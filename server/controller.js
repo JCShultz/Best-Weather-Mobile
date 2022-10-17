@@ -59,7 +59,12 @@ exports.loginUser = (req, res) =>{
 
 //add item to the user list in the db
 exports.addLocation = (req, res) =>{
-  db.UserItem.finOneAndUpdate(
-    {name: req.body.name},
-  )
+  model.addLoc(req)
+  .then((body)=>{
+    console.log('body in', body)
+    res.send().status(201).end();
+  })
+  .catch((err)=>{
+    console.log('addLoc: ', err);
+  })
 }

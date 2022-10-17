@@ -8,3 +8,11 @@ exports.returnUser = (req) => {
     pass: req.body.pass
   })
 }
+
+
+exports.addLoc = (req) => {
+  return db.UserItem.findOneAndUpdate(
+    { name: req.body.name },
+    { $push: {locations: req.body.loc }}
+  )
+}
