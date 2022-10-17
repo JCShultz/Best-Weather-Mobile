@@ -12,7 +12,7 @@ exports.retrieve = (req, res) => {
           ).status(200).end();
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         })
     })
     .catch((err) => {
@@ -46,7 +46,7 @@ exports.loginUser = (req, res) =>{
   // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
     model.returnUser(req)
     .then((body)=>{
-      console.log('body',body)
+     // console.log('body',body)
       res.send(body).status(200).end();
     })
     .catch((err)=>{
@@ -59,6 +59,7 @@ exports.loginUser = (req, res) =>{
 
 //add item to the user list in the db
 exports.addLocation = (req, res) =>{
+  console.log('here now')
   model.addLoc(req)
   .then((body)=>{
     console.log('body in', body)

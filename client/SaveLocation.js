@@ -16,16 +16,18 @@ class SaveLocation extends React.Component {
   changeView = () => {
     this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
 //call addLoc
-    this.addLocation(this.state.location, this.props.coords.lat, this.props.coords.long);
+    this.addLocation(this.props.name, this.state.location, this.props.coords.lat, this.props.coords.long);
     this.props.view(false, true);
   }
 
-  addLocation = (name, loc, lat, long) => {
+  addLocation = (name, locName, locLat, locLong) => {
     axios.post('/location', {
       name: name,
-      locations: loc,
-      latitude: lat,
-      longitude: long
+      locations: {
+        name: name,
+        lat: locLat,
+        long: locLong
+      }
     })
     .then((res)=>{
       console.log(res);

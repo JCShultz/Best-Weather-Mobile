@@ -77,7 +77,7 @@ export default class User extends Component {
           })
         })
         .catch((err) => {
-          console.log(err);
+          console.log('could not get forecasts from NOAA: ', err);
         })
       })
     }
