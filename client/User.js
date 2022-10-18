@@ -59,7 +59,28 @@ export default class User extends Component {
 
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
-    if (this.props.list.length > 0) {
+    if (this.props.loggedIn) {
+      this.props.userInfo[0].locations.map((item) => {
+        let latitude = item.lat.toString();
+        let longitude = item.long.toString();
+        axios.post(`${config.ip}:${config.srvPort}/forecast`, {
+          lat: latitude,
+          long: longitude
+        })
+        .then((res)=>{
+          //console.log('response: ', res.data);
+          this.state.forecasts.push({
+            name: item.name,
+            forecast: res.data,
+            lat: item.lat,
+            long: item.long
+          })
+        })
+        .catch((err) => {
+          console.log('could not get forecasts from NOAA: ', err);
+        })
+      })
+    }else{
       this.props.list.map((item) => {
         let latitude = item.lat.toString();
         let longitude = item.long.toString();
@@ -85,8 +106,10 @@ export default class User extends Component {
 
 
   render() {
-    console.log(this.props.userInfo[0].locations, this.props.loggedIn)
+    //console.log(this.props.userInfo[0].locations, this.props.loggedIn)
+
     let list = this.props.list;
+
     if(this.props.loggedIn){
       list = this.props.userInfo[0].locations
     }

@@ -50,10 +50,6 @@ export default class App extends Component {
   //don't allow duplicate locations in list
 
 
-
-  //on component mount:
-  //if logged in retrieve users locations and set them to this.state.list
-
   //These functions:
   //get passed down to sub components to enable movement from page to page
   LoginView = (bool1, bool2) => {
