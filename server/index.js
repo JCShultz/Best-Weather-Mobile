@@ -19,13 +19,13 @@ app.use(express.static("public"));
 
 
 //REQUESTS FOR INFO FROM NOAA API BASED ON LAT,LONG
+
 //handle get requests for forecast of specific locations
 app.post('/forecast', contr.retrieve);
 
 
 
 //REQUESTS FOR INFO IN DB:
-
 
 //handle post requests creating user
 app.post('/user', contr.addUser);
@@ -37,7 +37,7 @@ app.post('/login', contr.loginUser);
 app.post('/location', contr.addLocation);
 
 //handle delete requests for locations
-app.delete('/user', (req, res) => {
+app.delete('/location', (req, res) => {
   //remove location from DB
   res.send('delete').status(200).end();
 });

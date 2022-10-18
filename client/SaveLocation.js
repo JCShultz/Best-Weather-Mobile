@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'rea
 
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
+import config from '../config.js';
 
 class SaveLocation extends React.Component {
   constructor(props) {
@@ -16,18 +17,23 @@ class SaveLocation extends React.Component {
   changeView = () => {
     this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
 //call addLoc
-    this.addLocation(this.props.name, this.state.location, this.props.coords.lat, this.props.coords.long);
+    this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
     this.props.view(false, true);
   }
 
+
+  //FIXME
   addLocation = (name, locName, locLat, locLong) => {
-    axios.post('/location', {
+    console.log(name, locName, locLat, locLong)
+    axios.post(`${config.ip}:${config.srvPort}/location`, {
       name: name,
-      locations: {
-        name: name,
-        lat: locLat,
-        long: locLong
-      }
+      locations: [
+        {
+          name: locName,
+          lat: locLat.toString(),
+          long: locLong.toString()
+        }
+      ]
     })
     .then((res)=>{
       console.log(res);

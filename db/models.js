@@ -13,9 +13,9 @@ exports.returnUser = (req) => {
 
 ///SORT OUT
 exports.addLoc = (req) => {
-  console.log('+++++++++++++++')
+  console.log('+++++++++++++++', req.body.locations[0].name)
   return db.UserItem.findOneAndUpdate(
     { name: req.body.name },
-    { $push: {locations: {name: req.body.locations.name, lat: req.body.locations.lat, long: req.body.locations.long} }
+    { $push: {locations: {name: req.body.locations[0].name, lat: req.body.locations[0].lat, long: req.body.locations[0].long} }
   })
 }

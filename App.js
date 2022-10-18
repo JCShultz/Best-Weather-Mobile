@@ -126,7 +126,7 @@ export default class App extends Component {
 
 
   render() {
-    console.log(this.state.loggedIn)
+    console.log("User is logged in: ", this.state.loggedIn)
     return (
       <>
         {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn}/>}
