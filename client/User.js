@@ -59,6 +59,7 @@ export default class User extends Component {
 
   //gathers all forecast info for every location in list on mount and adds to state
   componentDidMount() {
+    //req list info to update list every time the page loads
     if (this.props.loggedIn) {
       this.props.userInfo[0].locations.map((item) => {
         let latitude = item.lat.toString();

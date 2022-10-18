@@ -111,6 +111,7 @@ export default class App extends Component {
   SaveLocation = (name, lat, long) => {
     if(this.state.list.length <= 4){
       this.state.list.push({name: name, lat: lat, long: long});
+      this.state.userInfo[0].locations.push({name: name, lat: lat, long: long});
     } else {
       //ask to replace item in list
     }
