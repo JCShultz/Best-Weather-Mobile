@@ -21,8 +21,8 @@ export default class App extends Component {
       saveLocationView: false,
       locationDetailView: false,
       coordinates: {
-        long:0,
-        lat:0
+        long: 0,
+        lat: 0
       },
       list: [],
       selectedItem: {},
@@ -99,7 +99,7 @@ export default class App extends Component {
 
   //This function:
   //updates the state by the coordinates of the long press on the map on the user page
-  UpdateCoordinates = (lat, long) =>{
+  UpdateCoordinates = (lat, long) => {
     this.setState({
       coordinates: {
         lat: lat,
@@ -109,15 +109,17 @@ export default class App extends Component {
   }
 
   SaveLocation = (name, lat, long) => {
-    if(this.state.list.length <= 4){
-      this.state.list.push({name: name, lat: lat, long: long});
-      this.state.userInfo[0].locations.push({name: name, lat: lat, long: long});
+    if (this.state.list.length <= 4) {
+      this.state.list.push({ name: name, lat: lat, long: long });
+      if (this.state.loggedIn) {
+        this.state.userInfo[0].locations.push({ name: name, lat: lat, long: long });
+      }
     } else {
       //ask to replace item in list
     }
   }
 
-  UpdateUserInfo = (userInfo) =>{
+  UpdateUserInfo = (userInfo) => {
     this.setState({
       userInfo: userInfo,
       loggedIn: true
@@ -130,12 +132,12 @@ export default class App extends Component {
     console.log("User is logged in: ", this.state.loggedIn, this.state.userInfo[0])
     return (
       <>
-        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn}/>}
-        {this.state.loginView && <Login view={this.LoginView} update={this.UpdateUserInfo}/>}
+        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn} />}
+        {this.state.loginView && <Login view={this.LoginView} update={this.UpdateUserInfo} />}
         {this.state.createView && <Create view={this.CreateView} />}
-        {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn}/>}
-        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation} userInfo={this.state.userInfo}/>}
-        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo}/>}
+        {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn} />}
+        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation} userInfo={this.state.userInfo} login={this.state.loggedIn}/>}
+        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo} />}
       </>
     );
   }
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: "30pt",
     textShadowColor: 'black',
-    textShadowOffset: {width: 5, height: 5},
+    textShadowOffset: { width: 5, height: 5 },
     textShadowRadius: 5
   }
 });

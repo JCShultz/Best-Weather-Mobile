@@ -9,14 +9,16 @@ class SaveLocation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location:''
+      location: ''
     }
   }
 
   //changes view back to User page and passes location info the User page
   changeView = () => {
     this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
-    this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
+    if (this.props.login) {
+      this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
+    }
     this.props.view(false, true);
   }
 
@@ -32,16 +34,16 @@ class SaveLocation extends React.Component {
         }
       ]
     })
-    .then((res)=>{
-      console.log(res);
-    })
-    .catch((err)=>{
-      console.log('error in location save: ', err)
-    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log('error in location save: ', err)
+      })
   }
 
   //uses input to update state
-  updateState = (text) =>{
+  updateState = (text) => {
     this.setState({
       location: text
     })
@@ -54,7 +56,7 @@ class SaveLocation extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <TextInput placeholder="enter name for location" style={styles.input} onChangeText={(text)=>{this.updateState(text)}}/>
+        <TextInput placeholder="enter name for location" style={styles.input} onChangeText={(text) => { this.updateState(text) }} />
         <Button
           onPress={
             () => {
