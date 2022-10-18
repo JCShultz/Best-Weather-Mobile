@@ -33,7 +33,7 @@ export default class App extends Component {
     }
   }
 
-  //TODO:
+  //TODO -
 
   //PROTECTED BY LOGIN:
   //User screen
@@ -42,13 +42,17 @@ export default class App extends Component {
   //FRONTEND:
   //delete list items
   //add list items
+  //FIXME - locations from DB now load but forecasts do not
+
 
   //BACKEND:
-  //req handlers for db interactions
-  //db functionality
   //don't allow duplicate usernames in db
+  //don't allow duplicate locations in list
 
 
+
+  //on component mount:
+  //if logged in retrieve users locations and set them to this.state.list
 
   //These functions:
   //get passed down to sub components to enable movement from page to page
@@ -126,7 +130,7 @@ export default class App extends Component {
 
 
   render() {
-    console.log("User is logged in: ", this.state.loggedIn)
+    console.log("User is logged in: ", this.state.loggedIn, this.state.userInfo[0])
     return (
       <>
         {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn}/>}

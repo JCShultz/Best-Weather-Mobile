@@ -16,15 +16,12 @@ class SaveLocation extends React.Component {
   //changes view back to User page and passes location info the User page
   changeView = () => {
     this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
-//call addLoc
     this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
     this.props.view(false, true);
   }
 
-
-  //FIXME
+  //adds location to uses table in db
   addLocation = (name, locName, locLat, locLong) => {
-    console.log(name, locName, locLat, locLong)
     axios.post(`${config.ip}:${config.srvPort}/location`, {
       name: name,
       locations: [
@@ -53,7 +50,7 @@ class SaveLocation extends React.Component {
 
 
   render() {
-    console.log(this.props.userInfo)
+    //console.log(this.props.userInfo)
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />

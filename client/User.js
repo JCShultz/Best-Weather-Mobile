@@ -85,7 +85,11 @@ export default class User extends Component {
 
 
   render() {
-    //console.log(this.props)
+    console.log(this.props.userInfo[0].locations, this.props.loggedIn)
+    let list = this.props.list;
+    if(this.props.loggedIn){
+      list = this.props.userInfo[0].locations
+    }
     return (
       <View style={styles.container}>
         <MapView
@@ -107,7 +111,7 @@ export default class User extends Component {
         <Text style={styles.text}>Saved Locations</Text>
 
         <StatusBar style="auto" />
-        {this.props.list.map((item) => {
+        {list.map((item) => {
           return <Button
             title={item.name}
             key={Math.random()}
