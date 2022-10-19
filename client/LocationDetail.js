@@ -12,6 +12,12 @@ const LocationDetail = (props) => {
     props.view(false, true);
   }
 
+  let changeViewDelete = (loc) => {
+    props.delete(loc);
+    props.view(false, true);
+  }
+
+  console.log(props)
 
   return (
     <View style={styles.container}>
@@ -31,7 +37,7 @@ const LocationDetail = (props) => {
 
       </ScrollView>
       <Button
-        onPress={() => { changeView() }}
+        onPress={() => { changeViewDelete(props.item.name) }}
         title="Remove Location"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"

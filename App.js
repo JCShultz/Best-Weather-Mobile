@@ -131,6 +131,20 @@ export default class App extends Component {
   }
 
 
+//FIXME -
+//input needs to look like an object with lat, long, and name to remove item, not just name
+  DeleteLoc = (loc) => {
+
+    this.state.userInfo[0].locations.map((location, i)=>{
+      console.log('checking: ', loc, location.name);
+      if(location.name === loc){
+        this.state.userInfo[0].locations.splice(location, 1);
+      }
+    })
+    console.log(this.state.userInfo[0].locations)
+  }
+
+
   render() {
     console.log("User is logged in: ", this.state.loggedIn, this.state.userInfo[0])
     return (
@@ -140,7 +154,7 @@ export default class App extends Component {
         {this.state.createView && <Create view={this.CreateView} />}
         {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn} />}
         {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation} userInfo={this.state.userInfo} login={this.state.loggedIn}/>}
-        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo} />}
+        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo} delete={this.DeleteLoc}/>}
       </>
     );
   }
