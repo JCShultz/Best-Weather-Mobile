@@ -131,10 +131,10 @@ export default class App extends Component {
   }
 
 
-//FIXME -
-//input needs to look like an object with lat, long, and name to remove item, not just name
-  DeleteLoc = (loc) => {
 
+  DeleteLoc = (loc) => {
+    //TODO -
+    //add delete request to server to remove user location from db in this function
     this.state.userInfo[0].locations.map((location, i)=>{
       console.log('checking: ', loc, location.name);
       if(location.name === loc){
