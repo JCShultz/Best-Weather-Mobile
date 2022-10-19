@@ -42,6 +42,7 @@ export default class App extends Component {
   //delete list items
   //hide password input
   //set 'passwordRules' check react native docs
+  //ask if you are sure you want to delete location from user list
 
 
   //BACKEND:
@@ -129,8 +130,6 @@ export default class App extends Component {
       list: []
     }, console.log(this.state.loggedIn))
   }
-
-
 
   DeleteLoc = (loc) => {
     //TODO -
