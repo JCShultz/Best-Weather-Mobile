@@ -126,13 +126,18 @@ export default class App extends Component {
     })
   }
 
+  LogOut = () => {
+    this.setState({
+      loggedIn: false
+    }, console.log(this.state.loggedIn))
+  }
 
 
   render() {
     console.log("User is logged in: ", this.state.loggedIn, this.state.userInfo[0])
     return (
       <>
-        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn} />}
+        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn} logOut={this.LogOut}/>}
         {this.state.loginView && <Login view={this.LoginView} update={this.UpdateUserInfo} />}
         {this.state.createView && <Create view={this.CreateView} />}
         {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn} />}

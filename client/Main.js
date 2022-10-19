@@ -16,6 +16,9 @@ const Main = (props) => {
   let userView = () => {
     props.viewUser(true, false);
   }
+  let logOut = () => {
+    props.logOut();
+  }
 
   //console.log("main: ", props)
   return (
@@ -30,11 +33,18 @@ const Main = (props) => {
       />
       <Button
         onPress={() => { loginView() }}
-        title="Login"
+        title="Log In"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       /></>}
+      {props.log && <>
+        <Button
+          onPress={()=>{ logOut() }}
+          title="Log Out"
+          color="#841584"
+        />
 
+      </>}
       <Button
         onPress={() => { userView() }}
         title="Continue"
