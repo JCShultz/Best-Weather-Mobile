@@ -22,21 +22,24 @@ exports.retrieve = (req, res) => {
 
 //add user to db
 exports.addUser = (req, res) =>{
-  // model.returnUser(req)
-  // .then((body)=>{
-  //   if(b)
-  // })
-  // if(users.length > 0 && users.indexOf({name: req.body.name, pass: req.body.pass}) < 0){
-    db.UserItem.create({
-      name: req.body.name,
-      pass: req.body.pass
-    })
-    .then((body)=>{
-      res.send().status(201).end();
-    })
-    .catch((err)=>{
-      console.log('create: ', err);
-    })
+  model.returnUser(req)
+  .then((body)=>{
+    console.log('find user: ', body.length);
+    if(body.length === 0){
+      db.UserItem.create({
+        name: req.body.name,
+        pass: req.body.pass
+      })
+      .then((body)=>{
+        res.send().status(201).end();
+      })
+      .catch((err)=>{
+        console.log('create: ', err);
+      })
+    }else{
+      res.send('user already exists').status(200).end();
+    }
+  })
   // }
 }
 

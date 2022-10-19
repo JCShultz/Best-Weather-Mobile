@@ -36,21 +36,28 @@ const Main = (props) => {
         title="Log In"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
-      /></>}
+      />
+          <Button
+        onPress={() => { userView() }}
+        title="Continue"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
+      </>}
       {props.log && <>
         <Button
           onPress={()=>{ logOut() }}
           title="Log Out"
           color="#841584"
         />
+        <Button
+          onPress={()=>{ userView() }}
+          title="Back to User lists"
+          color="#841584"
+        />
 
       </>}
-      <Button
-        onPress={() => { userView() }}
-        title="Continue"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
+
     </View>
   )
 }

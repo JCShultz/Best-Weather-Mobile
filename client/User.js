@@ -152,7 +152,7 @@ export default class User extends Component {
         })}
         <Button
           onPress={() => { this.userView() }}
-          title="back"
+          title="back to Main screen"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />

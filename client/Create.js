@@ -25,8 +25,13 @@ export default class Create extends Component {
       pass: this.state.pword
     })
     .then((res)=>{
-      console.log(res);
-      this.changeView();
+      console.log('response: ', res.data);
+      if(res.data === 'user already exists'){
+        alert('this user name already exists please choose another')
+      }else{
+        this.changeView();
+      }
+
     })
     .catch((err)=>{
       console.log(err);

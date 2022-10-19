@@ -35,20 +35,17 @@ export default class App extends Component {
 
   //TODO -
 
-  //PROTECTED BY LOGIN:
   //User screen
-  //able to create lists, save, and filter based on ideal conditions
+  //able filter list based on ideal conditions
 
   //FRONTEND:
   //delete list items
-  //add list items
-  //FIXME - locations from DB now load but forecasts do not
 
 
   //BACKEND:
   //don't allow duplicate usernames in db
   //don't allow duplicate locations in list
-
+  //hash passwords
 
   //These functions:
   //get passed down to sub components to enable movement from page to page
