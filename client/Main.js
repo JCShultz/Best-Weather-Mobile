@@ -52,7 +52,7 @@ const Main = (props) => {
         />
         <Button
           onPress={()=>{ userView() }}
-          title="Back to User lists"
+          title="Your Locations"
           color="#841584"
         />
 

@@ -40,11 +40,11 @@ export default class App extends Component {
 
   //FRONTEND:
   //delete list items
+  //hide password input
+  //set 'passwordRules' check react native docs
 
 
   //BACKEND:
-  //don't allow duplicate usernames in db
-  //don't allow duplicate locations in list
   //hash passwords
 
   //These functions:
@@ -125,7 +125,8 @@ export default class App extends Component {
 
   LogOut = () => {
     this.setState({
-      loggedIn: false
+      loggedIn: false,
+      list: []
     }, console.log(this.state.loggedIn))
   }
 

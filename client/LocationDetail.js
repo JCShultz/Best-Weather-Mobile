@@ -32,6 +32,12 @@ const LocationDetail = (props) => {
       </ScrollView>
       <Button
         onPress={() => { changeView() }}
+        title="Remove Location"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
+      <Button
+        onPress={() => { changeView() }}
         title="Back"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
