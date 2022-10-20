@@ -50,6 +50,7 @@ export default class App extends Component {
 
   //These functions:
   //get passed down to sub components to enable movement from page to page
+
   LoginView = (bool1, bool2) => {
     this.setState({
       loginView: bool1,
