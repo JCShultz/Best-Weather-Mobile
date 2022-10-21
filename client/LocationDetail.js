@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-
 import { StatusBar } from 'expo-status-bar';
 import axios from "axios";
 

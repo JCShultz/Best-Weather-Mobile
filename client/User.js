@@ -5,8 +5,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import LocationDetail from './LocationDetail';
 import axios from 'axios';
 import config from '../config.js';
-
-
 import { StatusBar } from 'expo-status-bar';
 
 export default class User extends Component {
@@ -20,7 +18,10 @@ export default class User extends Component {
         "Red Cliff, CO",
         "Rocky Mountain National Park, CO"
       ],
-      forecasts: []
+      forecasts: [],
+      wind: false,
+      precip: false,
+      temp: false
     }
   }
 
@@ -114,6 +115,7 @@ export default class User extends Component {
     if(this.props.loggedIn){
       list = this.props.userInfo[0].locations
     }
+
     return (
       <View style={styles.container}>
         <MapView
