@@ -16,9 +16,7 @@ const LocationDetail = (props) => {
     props.delete(loc);
     props.view(false, true);
   }
-
-  console.log(props)
-
+  console.log(props);
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />

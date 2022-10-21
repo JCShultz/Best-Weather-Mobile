@@ -1,14 +1,21 @@
+//dependencies to use in APP.js:
 import { StatusBar } from 'expo-status-bar';
-
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from 'react-native';
+import axios from 'axios';
 
+//importing other files to render in APP.js:
 import Login from "./client/Login";
 import Create from "./client/Create";
 import User from "./client/User";
 import Main from "./client/Main";
 import SaveLocation from './client/SaveLocation';
 import LocationDetail from './client/LocationDetail';
+
+//importing config file:
+import config from './config.js';
+
+
 
 export default class App extends Component {
   constructor(props) {
@@ -43,7 +50,7 @@ export default class App extends Component {
   //hide password input
   //set 'passwordRules' check react native docs
   //ask if you are sure you want to delete location from user list
-
+  //timeout user login
 
   //BACKEND:
   //hash passwords
@@ -133,20 +140,27 @@ export default class App extends Component {
   }
 
   DeleteLoc = (loc) => {
-    //TODO -
-    //add delete request to server to remove user location from db in this function
     this.state.userInfo[0].locations.map((location, i)=>{
-      console.log('checking: ', loc, location.name);
       if(location.name === loc){
         this.state.userInfo[0].locations.splice(location, 1);
       }
     })
-    console.log(this.state.userInfo[0].locations)
+    //post req to server to remove the location from DB:
+    axios.post(`${config.ip}:${config.srvPort}/removelocation`, {
+      location: loc,
+      user: this.state.userInfo[0].name
+    })
+    .then((res)=>{
+      console.log('response to delete req: ', res);
+    })
+    .catch((err)=>{
+      console.log('delete req error in client: ', err)
+    })
   }
 
 
   render() {
-    console.log("User is logged in: ", this.state.loggedIn, this.state.userInfo[0])
+    //console.log("User is logged in: ", this.state.loggedIn, this.state.userInfo[0])
     return (
       <>
         {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn} logOut={this.LogOut}/>}

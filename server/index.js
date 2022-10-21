@@ -37,10 +37,7 @@ app.post('/login', contr.loginUser);
 app.post('/location', contr.addLocation);
 
 //handle delete requests for locations
-app.delete('/location', (req, res) => {
-  //remove location from DB
-  res.send('delete').status(200).end();
-});
+app.post('/removelocation', contr.removeLocation);
 
 app.listen(config.srvPort);
 console.log(`listening at: ${config.ip}:${config.srvPort}`);

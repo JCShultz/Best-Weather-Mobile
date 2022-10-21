@@ -58,17 +58,24 @@ exports.loginUser = (req, res) =>{
   // }
 }
 
-//delete list item from the user list in the db
-
 //add item to the user list in the db
 exports.addLocation = (req, res) =>{
-  console.log('here now')
   model.addLoc(req)
   .then((body)=>{
-    console.log('body in', body)
     res.send().status(201).end();
   })
   .catch((err)=>{
-    console.log('addLoc: ', err);
+    console.log('Error in addLoc in controller.js: ', err);
+  })
+}
+
+//remove location from user list in from db
+exports.removeLocation = (req, res) =>{
+  model.deleteLoc(req)
+  .then((body)=>{
+    console.log('delete in controllers: ', req.body.name)
+  })
+  .catch((err)=>{
+    console.log('Error in removeLocation in controller.js: ', err)
   })
 }
