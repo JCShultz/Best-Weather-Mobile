@@ -117,7 +117,7 @@ export default class User extends Component {
     }
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {flexDirection: "column"}]}>
         <MapView
           style={styles.map}
           onLongPress={(e) => {
@@ -164,7 +164,6 @@ export default class User extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
     backgroundColor: 'darkseagreen',
     alignItems: 'center',
     justifyContent: 'flex-end',
