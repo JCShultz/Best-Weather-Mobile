@@ -46,7 +46,6 @@ export default class App extends Component {
   //able filter list based on ideal conditions
 
   //FRONTEND:
-  //delete list items
   //hide password input
   //set 'passwordRules' check react native docs
   //ask if you are sure you want to delete location from user list

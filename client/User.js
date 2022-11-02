@@ -121,8 +121,6 @@ export default class User extends Component {
         <MapView
           style={styles.map}
           onLongPress={(e) => {
-            console.log(e.nativeEvent.coordinate);
-            //modal for saving locations
             this.SaveLocationView();
             this.PassLocationCoordinate(e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude);
 

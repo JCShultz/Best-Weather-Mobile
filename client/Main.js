@@ -20,7 +20,6 @@ const Main = (props) => {
     props.logOut();
   }
 
-  //console.log("main: ", props)
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Best Weather Mobile</Text>
