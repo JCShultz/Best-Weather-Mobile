@@ -26,10 +26,10 @@ exports.deleteLoc = (req) => {
   //   { $pull: { locations: { location: req.body.location } } }
   // )
 
-  return db.UserItem.find({
-    "name": req.body.user,
-    "locations.name": req.body.location
-  })
+  return db.UserItem.findOneAndUpdate(
+    { name: req.body.user},
+    { $pull: {locations: {name: req.body.location}}}
+  )
   .then((data)=>{
     console.log('here: ', data)
   })
