@@ -1,14 +1,14 @@
 const db = require('./db.js');
 
-
+//find a user information
 exports.returnUser = (req) => {
-  //console.log(req.body)
   return db.UserItem.find({
     name: req.body.name,
     pass: req.body.pass
   })
 }
 
+//adds locations to a users list
 exports.addLoc = (req) => {
   return db.UserItem.findOneAndUpdate(
     { name: req.body.name },
@@ -16,22 +16,11 @@ exports.addLoc = (req) => {
   )
 }
 
-
-//TODO - remove locations from DB for specific user and matching location name
+//removes locations from a users list
 exports.deleteLoc = (req) => {
-  console.log(req.body.location, req.body.user)
-
-  // return db.UserItem.updateOne(
-  //   { name: req.body.name },
-  //   { $pull: { locations: { location: req.body.location } } }
-  // )
-
   return db.UserItem.findOneAndUpdate(
     { name: req.body.user},
     { $pull: {locations: {name: req.body.location}}}
   )
-  .then((data)=>{
-    console.log('here: ', data)
-  })
 }
 

@@ -18,8 +18,8 @@ export default class Create extends Component {
     this.props.view(false, true);
   }
 
+  //creates new user ion DB
   createUser = (user, pword) => {
-    //axois post to /user with user and pword
     axios.post(`${config.ip}:${config.srvPort}/user`, {
       name: this.state.user,
       pass: this.state.pword
@@ -38,12 +38,14 @@ export default class Create extends Component {
     })
   }
 
+  //sets state value to user field input
   onUserChange=(text)=>{
     this.setState({
       user: text
     })
   }
 
+  //sets state value to password field input
   onPassChange=(text)=>{
     this.setState({
       pword: text
@@ -66,7 +68,6 @@ export default class Create extends Component {
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
-      {console.log(this.state)}
     </View>
   )
   }

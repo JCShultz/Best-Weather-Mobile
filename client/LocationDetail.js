@@ -7,15 +7,17 @@ import axios from "axios";
 const LocationDetail = (props) => {
   //should get location in props
 
+  //changes the view back to user page
   let changeView = () => {
     props.view(false, true);
   }
 
+  //changes the view back to user page and removes location from the list
   let changeViewDelete = (loc) => {
     props.delete(loc);
     props.view(false, true);
   }
-  console.log(props);
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
