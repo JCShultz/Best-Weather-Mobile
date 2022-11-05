@@ -68,13 +68,12 @@ export default class User extends Component {
           long: longitude
         })
         .then((res)=>{
-          //fix how we set state here:
-          this.state.forecasts.push({
+          this.setState({ forecasts: [...this.state.forecasts, {
             name: item.name,
             forecast: res.data,
             lat: item.lat,
             long: item.long
-          })
+          }]})
           //TODO: //list must be sorted of these values
           //console.log('updated', this.state.forecasts)
         })
@@ -91,13 +90,13 @@ export default class User extends Component {
           long: longitude
         })
         .then((res)=>{
-          this.state.forecasts.push({
+          this.setState({ forecasts: [...this.state.forecasts, {
             name: item.name,
             forecast: res.data,
             lat: item.lat,
             long: item.long
-          });
-          console.log(this.state.forecasts)
+          }]})
+
         })
         .catch((err) => {
           this.GetForecasts();
@@ -108,7 +107,6 @@ export default class User extends Component {
   }
 
   componentDidMount() {
-    //req list info to update list every time the page loads
     this.GetForecasts();
   }
 
@@ -124,8 +122,8 @@ export default class User extends Component {
     //console.log('not logged list: ', this.props.list)
     if(this.props.loggedIn){
       list = this.props.userInfo[0].locations
-      //console.log('logged list: ', this.state.forecasts);
     }
+    console.log('yess',this.state.forecasts)
 
     return (
       <View style={[styles.container, {flexDirection: "column"}]}>
@@ -152,9 +150,8 @@ export default class User extends Component {
           boxStyles={{
             backgroundColor:'lightpink',
             marginBottom: 10
-
           }}
-          inputStyles={{}}
+          // inputStyles={{}}
         />
         <StatusBar style="auto" />
         {list.map((item) => {
