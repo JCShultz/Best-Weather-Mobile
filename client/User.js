@@ -74,8 +74,6 @@ export default class User extends Component {
             lat: item.lat,
             long: item.long
           }]})
-          //TODO: //list must be sorted of these values
-          //console.log('updated', this.state.forecasts)
         })
         .catch((err) => {
           console.log('could not get forecasts from NOAA: ', err);
@@ -114,9 +112,8 @@ export default class User extends Component {
   render() {
     let menuItems = [
       {key:'1', value: 'wind speed'},
-      {key:'2', value: 'moisture content'},
-      {key:'3', value: 'cloud cover'},
-      {key:'4', value: 'temperature'}
+      {key:'2', value: 'precipitation'},
+      {key:'3', value: 'temperature'}
     ];
     let list = this.props.list;
     //console.log('not logged list: ', this.props.list)
