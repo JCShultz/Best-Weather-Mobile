@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'darkseagreen',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
   text: {
     fontWeight: "bold",

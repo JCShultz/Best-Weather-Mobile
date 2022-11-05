@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'darkseagreen',
     alignItems: 'center',
     justifyContent: 'center',
-    overFlow: 'auto'
+    overFlow: 'auto',
+    paddingBottom: 40
   },
   input: {
     height: 60,

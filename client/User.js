@@ -49,7 +49,6 @@ export default class User extends Component {
 
 
   //TODO:
-  //ability to remove items from list
   //drop downs for sorting and list change (skiing/climbing)
   //sorting list by precip, cloud cover and others
 
@@ -58,9 +57,8 @@ export default class User extends Component {
 
   //sort by wind
 
-  //gathers all forecast info for every location in list on mount and adds to state
-  componentDidMount() {
-    //req list info to update list every time the page loads
+  //gathers all forecast info for every location in list and adds to state
+  GetForecasts = () => {
     if (this.props.loggedIn) {
       this.props.userInfo[0].locations.map((item) => {
         let latitude = item.lat.toString();
@@ -70,7 +68,6 @@ export default class User extends Component {
           long: longitude
         })
         .then((res)=>{
-          //console.log('response: ', res.data);
           this.state.forecasts.push({
             name: item.name,
             forecast: res.data,
@@ -91,13 +88,13 @@ export default class User extends Component {
           long: longitude
         })
         .then((res)=>{
-          //console.log('response: ', res.data);
           this.state.forecasts.push({
             name: item.name,
             forecast: res.data,
             lat: item.lat,
             long: item.long
-          })
+          });
+          console.log(this.state.forecasts)
         })
         .catch((err) => {
           console.log('could not get forecasts from NOAA: ', err);
@@ -106,14 +103,21 @@ export default class User extends Component {
     }
   }
 
+  componentDidMount() {
+    //req list info to update list every time the page loads
+    setTimeout(()=>{
+      this.GetForecasts();
+    }, "500");
+  }
 
   render() {
-    //console.log(this.props.userInfo[0].locations, this.props.loggedIn)
-
+    let menuItems = [{value: 'wind speed'}, {value:'moisture content'}];
+    //console.log(this.state.forecasts)
     let list = this.props.list;
-
+    console.log('not logged list: ', this.props.list)
     if(this.props.loggedIn){
       list = this.props.userInfo[0].locations
+      console.log('logged list: ', list);
     }
 
     return (
@@ -133,7 +137,6 @@ export default class User extends Component {
           userInterfaceStyle={'dark'}
         />
         <Text style={styles.text}>Saved Locations</Text>
-
         <StatusBar style="auto" />
         {list.map((item) => {
           return <Button
@@ -166,10 +169,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'darkseagreen',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    // justifyContent: 'flex-end',
     paddingBottom: 40
   },
   text: {
+    backgroundColor: 'orange',
     color: "#841584",
     fontWeight: "bold",
     fontSize: "30pt",
@@ -178,13 +182,15 @@ const styles = StyleSheet.create({
     textShadowRadius: .75
   },
   map: {
+    marginBottom: 20,
+    flex: 1,
     borderColor: 'black',
-    borderWidth: 5,
+    borderWidth: 8,
     borderRadius: 15,
     margin: 10,
-    marginTop: 40,
-    height: '60%',
-    ...StyleSheet.absoluteFillObject
+    marginTop: 50,
+    width: '90%',
+    // ...StyleSheet.absoluteFillObject
   },
   listItem: {
     display: 'inline block'
