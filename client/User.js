@@ -68,6 +68,7 @@ export default class User extends Component {
           long: longitude
         })
         .then((res)=>{
+          //fix how we set state here:
           this.state.forecasts.push({
             name: item.name,
             forecast: res.data,
@@ -99,6 +100,7 @@ export default class User extends Component {
           console.log(this.state.forecasts)
         })
         .catch((err) => {
+          this.GetForecasts();
           console.log('could not get forecasts from NOAA: ', err);
         })
       })
@@ -107,23 +109,22 @@ export default class User extends Component {
 
   componentDidMount() {
     //req list info to update list every time the page loads
-    setTimeout(()=>{
-      this.GetForecasts();
-    }, "500");
+    this.GetForecasts();
   }
+
 
   render() {
     let menuItems = [
       {key:'1', value: 'wind speed'},
       {key:'2', value: 'moisture content'},
-      {key:'3', value: 'cloud cover'}
+      {key:'3', value: 'cloud cover'},
+      {key:'4', value: 'temperature'}
     ];
-    //console.log(this.state.forecasts)
     let list = this.props.list;
     //console.log('not logged list: ', this.props.list)
     if(this.props.loggedIn){
       list = this.props.userInfo[0].locations
-      console.log('logged list: ', this.state.forecasts);
+      //console.log('logged list: ', this.state.forecasts);
     }
 
     return (
@@ -133,7 +134,6 @@ export default class User extends Component {
           onLongPress={(e) => {
             this.SaveLocationView();
             this.PassLocationCoordinate(e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude);
-
           }}
           region={this.props.coordinate}
           showsUserLocation={true}
@@ -148,7 +148,6 @@ export default class User extends Component {
           maxHeight={130}
           placeholder='sort list by:'
           // setSelected={
-
           // }
           boxStyles={{
             backgroundColor:'lightpink',
