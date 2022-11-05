@@ -5627,6 +5627,11 @@
   "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.2.tgz"
   "version" "5.4.2"
 
+"react-native-dropdown-select-list@^1.0.23":
+  "integrity" "sha512-P4/GsqVv2EEUUJXyJyMwdDYKAT7qcsD6aXu0BjkM/5VmQGRLhRiLs7wfPW12Tva+AyX6URfw7pTsupJM3/oh/g=="
+  "resolved" "https://registry.npmjs.org/react-native-dropdown-select-list/-/react-native-dropdown-select-list-1.0.23.tgz"
+  "version" "1.0.23"
+
 "react-native-gradle-plugin@^0.0.7":
   "integrity" "sha512-+4JpbIx42zGTONhBTIXSyfyHICHC29VTvhkkoUOJAh/XHPEixpuBduYgf6Y4y9wsN1ARlQhBBoptTvXvAFQf5g=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz"

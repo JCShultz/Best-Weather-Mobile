@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
-import DropDownPicker from 'react-native-dropdown-picker';
+import SelectList from 'react-native-dropdown-select-list';
 import LocationDetail from './LocationDetail';
 import axios from 'axios';
 import config from '../config.js';
@@ -74,6 +74,8 @@ export default class User extends Component {
             lat: item.lat,
             long: item.long
           })
+          //TODO: //list must be sorted of these values
+          //console.log('updated', this.state.forecasts)
         })
         .catch((err) => {
           console.log('could not get forecasts from NOAA: ', err);
@@ -111,13 +113,17 @@ export default class User extends Component {
   }
 
   render() {
-    let menuItems = [{value: 'wind speed'}, {value:'moisture content'}];
+    let menuItems = [
+      {key:'1', value: 'wind speed'},
+      {key:'2', value: 'moisture content'},
+      {key:'3', value: 'cloud cover'}
+    ];
     //console.log(this.state.forecasts)
     let list = this.props.list;
-    console.log('not logged list: ', this.props.list)
+    //console.log('not logged list: ', this.props.list)
     if(this.props.loggedIn){
       list = this.props.userInfo[0].locations
-      console.log('logged list: ', list);
+      console.log('logged list: ', this.state.forecasts);
     }
 
     return (
@@ -137,6 +143,20 @@ export default class User extends Component {
           userInterfaceStyle={'dark'}
         />
         <Text style={styles.text}>Saved Locations</Text>
+        <SelectList
+          data={menuItems}
+          maxHeight={130}
+          placeholder='sort list by:'
+          // setSelected={
+
+          // }
+          boxStyles={{
+            backgroundColor:'lightpink',
+            marginBottom: 10
+
+          }}
+          inputStyles={{}}
+        />
         <StatusBar style="auto" />
         {list.map((item) => {
           return <Button
@@ -173,7 +193,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40
   },
   text: {
-    backgroundColor: 'orange',
     color: "#841584",
     fontWeight: "bold",
     fontSize: "30pt",

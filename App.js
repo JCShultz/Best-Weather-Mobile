@@ -114,6 +114,7 @@ export default class App extends Component {
   }
 
   SaveLocation = (name, lat, long) => {
+    console.log('list length', this.state.list.length)
     if (this.state.list.length <= 4) {
       this.state.list.push({ name: name, lat: lat, long: long });
       if (this.state.loggedIn) {
