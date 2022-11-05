@@ -15,31 +15,39 @@ class SaveLocation extends React.Component {
 
   //changes view back to User page and passes location info the User page
   changeView = () => {
-    this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
+    if (this.props.userInfo[0].locations.length <= 4) {
+      this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
+    }else{
+      alert('your only allowed 5 locations try removing one first')
+    }
     if (this.props.login) {
       this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
     }
     this.props.view(false, true);
   }
 
-  //adds location to uses table in db
+  //adds location to user table in db
   addLocation = (name, locName, locLat, locLong) => {
-    axios.post(`${config.ip}:${config.srvPort}/location`, {
-      name: name,
-      locations: [
-        {
-          name: locName,
-          lat: locLat.toString(),
-          long: locLong.toString()
-        }
-      ]
-    })
-      .then((res) => {
-        console.log(res);
+    if (this.props.userInfo[0].locations.length < 6) {
+      axios.post(`${config.ip}:${config.srvPort}/location`, {
+        name: name,
+        locations: [
+          {
+            name: locName,
+            lat: locLat.toString(),
+            long: locLong.toString()
+          }
+        ]
       })
-      .catch((err) => {
-        console.log('error in location save: ', err)
-      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log('error in location save: ', err)
+        })
+    } else {
+      alert('your only allowed 5 locations try removing one first')
+    }
   }
 
   //uses input to update state
@@ -52,7 +60,7 @@ class SaveLocation extends React.Component {
 
 
   render() {
-    //console.log(this.props.userInfo)
+    //console.log('this: ', this.props.userInfo[0].locations.length)
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
