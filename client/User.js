@@ -45,9 +45,6 @@ export default class User extends Component {
     this.props.update(lat, long)
   }
 
-
-
-
   //TODO:
   //drop downs for sorting and list change (skiing/climbing)
   //sorting list by precip, cloud cover and others
@@ -110,7 +107,8 @@ export default class User extends Component {
 
 
   render() {
-    let menuItems = [
+    // const [selected, setSelected] = React.useState("");
+    const menuItems = [
       {key:'1', value: 'wind speed'},
       {key:'2', value: 'precipitation'},
       {key:'3', value: 'temperature'}
@@ -142,10 +140,11 @@ export default class User extends Component {
           data={menuItems}
           maxHeight={130}
           placeholder='sort list by:'
-          // setSelected={
-          // }
+          // setSelected={(e)=>{console.log(e.nativeEvent)}}
+          // onSelect={(e)=>{console.log(e.nativeEvent)}}
+          search={false}
           boxStyles={{
-            backgroundColor:'lightpink',
+            // backgroundColor:'lightpink',
             marginBottom: 10
           }}
           // inputStyles={{}}
