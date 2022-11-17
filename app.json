@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "Best-Weather-Mobile",
-    "slug": "Best-Weather-Mobile",
+    "owner": "josephcshultz",
+    "name": "Best Weather Mobile",
+    "slug": "best-weather-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
+// import { SegmentedControl } from '@react-native-segmented-control/segmented-control';
 import MapView from 'react-native-maps';
 import SelectList from 'react-native-dropdown-select-list';
 import LocationDetail from './LocationDetail';
@@ -50,7 +51,7 @@ export default class User extends Component {
   //sorting list by precip, cloud cover and others
 
   //write algorithm that iterates through the detailed forecast of each item and find the word "precipitation"
-   //then checks the percentage value after and sorts list bases on these values
+  //then checks the percentage value after and sorts list bases on these values
 
   //sort by wind
 
@@ -64,19 +65,21 @@ export default class User extends Component {
           lat: latitude,
           long: longitude
         })
-        .then((res)=>{
-          this.setState({ forecasts: [...this.state.forecasts, {
-            name: item.name,
-            forecast: res.data,
-            lat: item.lat,
-            long: item.long
-          }]})
-        })
-        .catch((err) => {
-          console.log('could not get forecasts from NOAA: ', err);
-        })
+          .then((res) => {
+            this.setState({
+              forecasts: [...this.state.forecasts, {
+                name: item.name,
+                forecast: res.data,
+                lat: item.lat,
+                long: item.long
+              }]
+            })
+          })
+          .catch((err) => {
+            console.log('could not get forecasts from NOAA: ', err);
+          })
       })
-    }else{
+    } else {
       this.props.list.map((item) => {
         let latitude = item.lat.toString();
         let longitude = item.long.toString();
@@ -84,19 +87,21 @@ export default class User extends Component {
           lat: latitude,
           long: longitude
         })
-        .then((res)=>{
-          this.setState({ forecasts: [...this.state.forecasts, {
-            name: item.name,
-            forecast: res.data,
-            lat: item.lat,
-            long: item.long
-          }]})
+          .then((res) => {
+            this.setState({
+              forecasts: [...this.state.forecasts, {
+                name: item.name,
+                forecast: res.data,
+                lat: item.lat,
+                long: item.long
+              }]
+            })
 
-        })
-        .catch((err) => {
-          this.GetForecasts();
-          console.log('could not get forecasts from NOAA: ', err);
-        })
+          })
+          .catch((err) => {
+            this.GetForecasts();
+            console.log('could not get forecasts from NOAA: ', err);
+          })
       })
     }
   }
@@ -108,20 +113,20 @@ export default class User extends Component {
 
   render() {
     // const [selected, setSelected] = React.useState("");
-    const menuItems = [
-      {key:'1', value: 'wind speed'},
-      {key:'2', value: 'precipitation'},
-      {key:'3', value: 'temperature'}
-    ];
+    // const menuItems = [
+    //   { key: '1', value: 'wind speed' },
+    //   { key: '2', value: 'precipitation' },
+    //   { key: '3', value: 'temperature' }
+    // ];
     let list = this.props.list;
     //console.log('not logged list: ', this.props.list)
-    if(this.props.loggedIn){
+    if (this.props.loggedIn) {
       list = this.props.userInfo[0].locations
     }
-    console.log('yess',this.state.forecasts)
+    console.log('yess', this.state.forecasts)
 
     return (
-      <View style={[styles.container, {flexDirection: "column"}]}>
+      <View style={[styles.container, { flexDirection: "column" }]}>
         <MapView
           style={styles.map}
           onLongPress={(e) => {
@@ -136,7 +141,7 @@ export default class User extends Component {
           userInterfaceStyle={'dark'}
         />
         <Text style={styles.text}>Saved Locations</Text>
-        <SelectList
+        {/* <SelectList
           data={menuItems}
           maxHeight={130}
           placeholder='sort list by:'
@@ -148,7 +153,14 @@ export default class User extends Component {
             marginBottom: 10
           }}
           // inputStyles={{}}
-        />
+        /> */}
+        {/* <SegmentedControl
+          values={['One', 'Two']}
+          selectedIndex={this.state.selectedIndex}
+          onChange={(event) => {
+            this.setState({ selectedIndex: event.nativeEvent.selectedSegmentIndex });
+          }}
+        /> */}
         <StatusBar style="auto" />
         {list.map((item) => {
           return <Button
