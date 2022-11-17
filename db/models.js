@@ -18,6 +18,7 @@ exports.addLoc = (req) => {
 
 //removes locations from a users list
 exports.deleteLoc = (req) => {
+  console.log(req.body.location)
   return db.UserItem.findOneAndUpdate(
     { name: req.body.user},
     { $pull: {locations: {name: req.body.location}}}
