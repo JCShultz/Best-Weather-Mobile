@@ -12,13 +12,6 @@ export default class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [
-        "Boulder, CO",
-        "Vedauwoo, WY",
-        "Turkey Rocks, CO",
-        "Red Cliff, CO",
-        "Rocky Mountain National Park, CO"
-      ],
       forecasts: [],
       wind: false,
       precip: false,
@@ -55,6 +48,9 @@ export default class User extends Component {
   //then checks the percentage value after and sorts list bases on these values
 
   //sort by wind
+
+
+
 
   //gathers all forecast info for every location in list and adds to state
   GetForecasts = () => {
