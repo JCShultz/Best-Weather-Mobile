@@ -16,12 +16,16 @@ class SaveLocation extends React.Component {
   //changes view back to User page and passes location info the User page
   changeView = () => {
     if (this.props.userInfo[0].locations.length <= 4) {
-      this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
-    }else{
+      if (this.state.location.length > 0) {
+        this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
+      }
+    } else {
       alert('your only allowed 5 locations try removing one first')
     }
     if (this.props.login) {
+      if (this.state.location.length > 0){
       this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
+      }
     }
     this.props.view(false, true);
   }
@@ -68,14 +72,18 @@ class SaveLocation extends React.Component {
         <Button
           onPress={
             () => {
-              this.changeView();
+              if (this.state.location.length > 0) {
+                this.changeView();
+              } else {
+                alert('you must name your location')
+              }
             }}
           title="Save Location"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
-        <Text>{this.props.coords.lat}</Text>
-        <Text>{this.props.coords.long}</Text>
+        <Text style={{ color: 'darkseagreen' }}>{this.props.coords.lat}</Text>
+        <Text style={{ color: 'darkseagreen' }}>{this.props.coords.long}</Text>
         <Button
           onPress={
             () => {
@@ -94,7 +102,7 @@ class SaveLocation extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'darkseagreen',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },

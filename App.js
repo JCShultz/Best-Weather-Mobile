@@ -140,9 +140,6 @@ export default class App extends Component {
   }
 
   DeleteLoc = (loc) => {
-    // console.log('location: ', loc)
-    // console.log('state before: ', this.state.userInfo[0].locations)
-
     //post req to server to remove the location from DB:
     axios.post(`${config.ip}:${config.srvPort}/removelocation`, {
       location: loc,
@@ -154,16 +151,12 @@ export default class App extends Component {
       .catch((err) => {
         console.log('delete req error in client: ', err)
       })
-
-
     axios.post(`${config.ip}:${config.srvPort}/login`, {
       name: this.state.userInfo[0].name,
       pass: this.state.userInfo[0].pass
     })
       .then((res) => {
-        //console.log('response', res.data[0].locations)
         this.UpdateUserInfo(res.data);
-
       })
       .catch((err) => {
         console.log('login', err);

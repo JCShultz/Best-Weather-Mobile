@@ -73,7 +73,7 @@ exports.addLocation = (req, res) =>{
 exports.removeLocation = (req, res) =>{
   model.deleteLoc(req)
   .then((body)=>{
-    console.log('delete in controllers: ', req.body.name)
+    console.log('delete in controllers: ', req.body)
   })
   .catch((err)=>{
     console.log('Error in removeLocation in controller.js: ', err)
