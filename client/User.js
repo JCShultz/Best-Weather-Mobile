@@ -125,7 +125,7 @@ export default class User extends Component {
       <View style={[styles.container, { flexDirection: "column" }]}>
         <Image
           source={require('../assets/lightning-png-44010.png')}
-          style={{ width: '110%', height: '60%', position: 'absolute', zIndex: '-1' }}
+          style={{ width: '110%', height: '55%', position: 'absolute', zIndex: '-1' }}
         />
         <MapView
           style={styles.map}
@@ -141,7 +141,7 @@ export default class User extends Component {
           userInterfaceStyle={'dark'}
         />
         {this.props.loggedIn && <Text style={styles.text}>Sort {this.props.userInfo[0].name}'s Locations By:</Text>}
-        {!this.props.loggedIn && <Text style={styles.text}>Locations</Text>}
+        {!this.props.loggedIn && <Text style={styles.text}>Locations By:</Text>}
 
         <View style={styles.wrapper}>
           {['precip', 'temp', 'wind', 'sun'].map(weather => (
