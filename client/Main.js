@@ -26,7 +26,7 @@ const Main = (props) => {
       <Text style={styles.text}>Best Weather Mobile</Text>
       <Image
         source={require('../assets/lightning-png-44010.png')}
-        style={{ width: '110%', height: '100%', position: 'absolute', zIndex: '-1'}}
+        style={{ width: '110%', height: '100%'}}
       />
          </View>
       <StatusBar style="auto" />
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20
+    padding: 20,
+    paddingTop: 200
   },
   text: {
     fontWeight: "bold",
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     textShadowColor: 'darkseagreen',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: .75,
-    paddingBottom: 250
+
   },
   buttons: {
     flex: 1,
