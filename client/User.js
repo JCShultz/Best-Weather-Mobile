@@ -144,7 +144,7 @@ export default class User extends Component {
         {!this.props.loggedIn && <Text style={styles.text}>Locations</Text>}
 
         <View style={styles.wrapper}>
-          {['rain', 'temp', 'wind'].map(weather => (
+          {['precip', 'temp', 'wind', 'sun'].map(weather => (
             <View style={styles.weather}>
               <TouchableOpacity
                 style={styles.outer}
