@@ -145,7 +145,7 @@ export default class User extends Component {
 
         <View style={styles.wrapper}>
           {['precip', 'temp', 'wind', 'sun'].map(weather => (
-            <View style={styles.weather}>
+            <View key={weather} style={styles.weather}>
               <TouchableOpacity
                 style={styles.outer}
                 onPress={()=>{this.setState({sorter: weather})}}>

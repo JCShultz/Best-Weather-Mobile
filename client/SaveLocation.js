@@ -18,21 +18,19 @@ class SaveLocation extends React.Component {
     if (this.props.userInfo[0].locations.length <= 4) {
       if (this.state.location.length > 0) {
         this.props.save(this.state.location, this.props.coords.lat, this.props.coords.long);
+        if(this.props.login){
+          this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
+        }
       }
     } else {
       alert('your only allowed 5 locations try removing one first')
-    }
-    if (this.props.login) {
-      if (this.state.location.length > 0){
-      this.addLocation(this.props.userInfo[0].name, this.state.location, this.props.coords.lat, this.props.coords.long);
-      }
     }
     this.props.view(false, true);
   }
 
   //adds location to user table in db
   addLocation = (name, locName, locLat, locLong) => {
-    if (this.props.userInfo[0].locations.length < 6) {
+    if (this.props.userInfo[0].locations.length <= 5) {
       axios.post(`${config.ip}:${config.srvPort}/location`, {
         name: name,
         locations: [
@@ -50,7 +48,7 @@ class SaveLocation extends React.Component {
           console.log('error in location save: ', err)
         })
     } else {
-      alert('your only allowed 5 locations try removing one first')
+      //alert('your only allowed 5 locations try removing one first')
     }
   }
 
