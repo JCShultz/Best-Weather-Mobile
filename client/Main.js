@@ -21,12 +21,14 @@ const Main = (props) => {
   }
 
   return (
+    <>
     <View style={styles.container}>
       <Text style={styles.text}>Best Weather Mobile</Text>
       <Image
         source={require('../assets/lightning-png-44010.png')}
-        style={{ width: '110%', height: '40%'}}
+        style={{ width: '110%', height: '100%', position: 'absolute', zIndex: '-1'}}
       />
+         </View>
       <StatusBar style="auto" />
       {!(props.log) && <View style={styles.buttons}>
         <Button
@@ -61,8 +63,8 @@ const Main = (props) => {
         />
 
       </View>}
+      </>
 
-    </View>
   )
 }
 
@@ -72,24 +74,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: 20
   },
   text: {
     fontWeight: "bold",
     color: '#841584',
     fontWeight: "bold",
     fontSize: "33pt",
-    textShadowColor: 'black',
-    textShadowOffset: { width: .75, height: .75 },
+    textShadowColor: 'darkseagreen',
+    textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: .75,
-    paddingBottom: 50,
-    paddingTop: 40,
-
+    paddingBottom: 250
   },
   buttons: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    backgroundColor: 'black'
   }
 })
 

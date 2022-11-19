@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Button, Dimensions, Image } from 'react-native';
 // import { SegmentedControl } from '@react-native-segmented-control/segmented-control';
 import MapView from 'react-native-maps';
 import SelectList from 'react-native-dropdown-select-list';
@@ -127,6 +127,10 @@ export default class User extends Component {
 
     return (
       <View style={[styles.container, { flexDirection: "column" }]}>
+        <Image
+          source={require('../assets/lightning-png-44010.png')}
+          style={{ width: '110%', height: '60%', position: 'absolute', zIndex: '-1' }}
+        />
         <MapView
           style={styles.map}
           onLongPress={(e) => {
@@ -191,7 +195,7 @@ export default class User extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'darkseagreen',
+    backgroundColor: 'black',
     alignItems: 'center',
     // justifyContent: 'flex-end',
     paddingBottom: 40
@@ -200,14 +204,14 @@ const styles = StyleSheet.create({
     color: "#841584",
     fontWeight: "bold",
     fontSize: "30pt",
-    textShadowColor: 'black',
+    textShadowColor: 'darkseagreen',
     textShadowOffset: { width: .75, height: .75 },
     textShadowRadius: .75
   },
   map: {
     marginBottom: 20,
     flex: 1,
-    borderColor: 'black',
+    borderColor: '#841584',
     borderWidth: 8,
     borderRadius: 15,
     margin: 10,
