@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
 
@@ -23,39 +23,44 @@ const Main = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Best Weather Mobile</Text>
+      <Image
+        source={require('../assets/lightning-png-44010.png')}
+        style={{ width: '110%', height: '40%'}}
+      />
       <StatusBar style="auto" />
-      {!(props.log) && <><Button
-        onPress={() => { createView() }}
-        title="Create Account"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={() => { loginView() }}
-        title="Log In"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-          <Button
-        onPress={() => { userView() }}
-        title="Continue"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      </>}
-      {props.log && <>
+      {!(props.log) && <View style={styles.buttons}>
         <Button
-          onPress={()=>{ logOut() }}
+          onPress={() => { createView() }}
+          title="Create Account"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <Button
+          onPress={() => { loginView() }}
+          title="Log In"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <Button
+          onPress={() => { userView() }}
+          title="Continue"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+      </View>}
+      {props.log && <View style={styles.buttons}>
+        <Button
+          onPress={() => { logOut() }}
           title="Log Out"
           color="#841584"
         />
         <Button
-          onPress={()=>{ userView() }}
+          onPress={() => { userView() }}
           title="Your Locations"
           color="#841584"
         />
 
-      </>}
+      </View>}
 
     </View>
   )
@@ -64,20 +69,27 @@ const Main = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'darkseagreen',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
   },
   text: {
     fontWeight: "bold",
-    fontSize: "30pt",
     color: '#841584',
     fontWeight: "bold",
-    fontSize: "30pt",
+    fontSize: "33pt",
     textShadowColor: 'black',
-    textShadowOffset: {width: .75, height: .75},
-    textShadowRadius: .75
+    textShadowOffset: { width: .75, height: .75 },
+    textShadowRadius: .75,
+    paddingBottom: 50,
+    paddingTop: 40,
+
+  },
+  buttons: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })
 
