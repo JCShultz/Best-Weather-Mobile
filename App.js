@@ -140,11 +140,19 @@ export default class App extends Component {
   }
 
   DeleteLoc = (loc) => {
+    console.log('location: ', loc)
+    console.log(this.state.userInfo[0].locations)
+    //TODO: not functioning properly
     this.state.userInfo[0].locations.map((location, i)=>{
+      console.log(location.name)
       if(location.name === loc){
         this.state.userInfo[0].locations.splice(location, 1);
       }
+      console.log('state: ', this.state.userInfo[0].locations)
     })
+
+
+
     //post req to server to remove the location from DB:
     axios.post(`${config.ip}:${config.srvPort}/removelocation`, {
       location: loc,

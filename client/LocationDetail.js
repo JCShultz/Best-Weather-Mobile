@@ -35,6 +35,7 @@ const LocationDetail = (props) => {
         })}
 
       </ScrollView>
+      <View style={styles.buttons}>
       <Button
         onPress={() => { changeViewDelete(props.item.name) }}
         title="Remove Location"
@@ -47,6 +48,7 @@ const LocationDetail = (props) => {
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
+      </View>
     </View>
   )
 }

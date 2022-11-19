@@ -32,14 +32,14 @@ const Main = (props) => {
       <StatusBar style="auto" />
       {!(props.log) && <View style={styles.buttons}>
         <Button
-          onPress={() => { createView() }}
-          title="Create Account"
+          onPress={() => { loginView() }}
+          title="Log In"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
         <Button
-          onPress={() => { loginView() }}
-          title="Log In"
+          onPress={() => { createView() }}
+          title="Create Account"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     textShadowColor: 'darkseagreen',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: .75,
-
   },
   buttons: {
     flex: 1,

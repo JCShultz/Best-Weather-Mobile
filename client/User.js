@@ -112,18 +112,12 @@ export default class User extends Component {
 
 
   render() {
-    // const [selected, setSelected] = React.useState("");
-    // const menuItems = [
-    //   { key: '1', value: 'wind speed' },
-    //   { key: '2', value: 'precipitation' },
-    //   { key: '3', value: 'temperature' }
-    // ];
+
     let list = this.props.list;
-    //console.log('not logged list: ', this.props.list)
+
     if (this.props.loggedIn) {
       list = this.props.userInfo[0].locations
     }
-    console.log('yess', this.state.forecasts)
 
     return (
       <View style={[styles.container, { flexDirection: "column" }]}>
