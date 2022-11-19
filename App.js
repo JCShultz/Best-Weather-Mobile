@@ -156,17 +156,18 @@ export default class App extends Component {
       })
 
 
-    // axios.post(`${config.ip}:${config.srvPort}/login`, {
-    //   name: this.state.user,
-    //   pass: this.state.pass
-    // })
-    //   .then((res) => {
-    //       this.UpdateUserInfo(res.data);
+    axios.post(`${config.ip}:${config.srvPort}/login`, {
+      name: this.state.userInfo[0].name,
+      pass: this.state.userInfo[0].pass
+    })
+      .then((res) => {
+        //console.log('response', res.data[0].locations)
+        this.UpdateUserInfo(res.data);
 
-    //   })
-    //   .catch((err) => {
-    //     console.log('login', err);
-    //   })
+      })
+      .catch((err) => {
+        console.log('login', err);
+      })
 
   }
 

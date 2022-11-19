@@ -139,26 +139,6 @@ export default class User extends Component {
         />
         {this.props.loggedIn && <Text style={styles.text}>{this.props.userInfo[0].name}'s Locations</Text>}
         {!this.props.loggedIn && <Text style={styles.text}>Locations</Text>}
-        {/* <SelectList
-          data={menuItems}
-          maxHeight={130}
-          placeholder='sort list by:'
-          // setSelected={(e)=>{console.log(e.nativeEvent)}}
-          // onSelect={(e)=>{console.log(e.nativeEvent)}}
-          search={false}
-          boxStyles={{
-            // backgroundColor:'lightpink',
-            marginBottom: 10
-          }}
-          // inputStyles={{}}
-        /> */}
-        {/* <SegmentedControl
-          values={['One', 'Two']}
-          selectedIndex={this.state.selectedIndex}
-          onChange={(event) => {
-            this.setState({ selectedIndex: event.nativeEvent.selectedSegmentIndex });
-          }}
-        /> */}
         <StatusBar style="auto" />
         {list.map((item) => {
           return <Button
