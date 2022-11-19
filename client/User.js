@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Dimensions, Image, TouchableOpacity } from 'react-native';
 // import { SegmentedControl } from '@react-native-segmented-control/segmented-control';
 import MapView from 'react-native-maps';
 import SelectList from 'react-native-dropdown-select-list';
@@ -22,7 +22,8 @@ export default class User extends Component {
       forecasts: [],
       wind: false,
       precip: false,
-      temp: false
+      temp: false,
+      sorter: ''
     }
   }
 
@@ -118,6 +119,8 @@ export default class User extends Component {
     if (this.props.loggedIn) {
       list = this.props.userInfo[0].locations
     }
+
+
     return (
       <View style={[styles.container, { flexDirection: "column" }]}>
         <Image
@@ -137,8 +140,24 @@ export default class User extends Component {
           showsCompass={true}
           userInterfaceStyle={'dark'}
         />
-        {this.props.loggedIn && <Text style={styles.text}>{this.props.userInfo[0].name}'s Locations</Text>}
+        {this.props.loggedIn && <Text style={styles.text}>Sort {this.props.userInfo[0].name}'s Locations By:</Text>}
         {!this.props.loggedIn && <Text style={styles.text}>Locations</Text>}
+
+        <View style={styles.wrapper}>
+          {['rain', 'temp', 'wind'].map(weather => (
+            <View style={styles.weather}>
+              <TouchableOpacity
+                style={styles.outer}
+                onPress={()=>{this.setState({sorter: weather})}}>
+                {this.state.sorter === weather && <View style={styles.inner} />}
+              </TouchableOpacity>
+              <Text style={{ color: "#841584" }}>{weather}</Text>
+            </View>
+          ))}
+
+        </View>
+
+
         <StatusBar style="auto" />
         {list.map((item) => {
           return <Button
@@ -195,6 +214,31 @@ const styles = StyleSheet.create({
   },
   listItem: {
     display: 'inline block'
+  },
+  inner: {
+    width: 20,
+    height: 20,
+    backgroundColor: 'darkseagreen',
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+
+  },
+  outer: {
+    width: 30,
+    height: 30,
+    borderColor: '#841584',
+    borderWidth: 2,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  wrapper: {
+    flexDirection: 'row',
+    padding: 10
+  },
+  weather: {
+    marginHorizontal: 20
   }
 })
 
