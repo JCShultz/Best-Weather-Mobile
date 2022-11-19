@@ -140,17 +140,24 @@ export default class App extends Component {
   }
 
   DeleteLoc = (loc) => {
-    console.log('location: ', loc)
-    console.log(this.state.userInfo[0].locations)
-    //TODO: not functioning properly
+    // console.log('location: ', loc)
+    // console.log('state before: ', this.state.userInfo[0].locations)
+    // //TODO: not functioning properly
     this.state.userInfo[0].locations.map((location, i)=>{
-      console.log(location.name)
+      console.log('names: ', location.name)
       if(location.name === loc){
         this.state.userInfo[0].locations.splice(location, 1);
+        console.log(this.state.userInfo[0].locations)
+        let locs = this.state.userInfo[0].locations;
+        this.setState({
+          userInfo: [{
+            locations: locs
+        }]
+        })
       }
-      console.log('state: ', this.state.userInfo[0].locations)
-    })
 
+    })
+    // console.log('state after: ', this.state.userInfo[0].locations)
 
 
     //post req to server to remove the location from DB:

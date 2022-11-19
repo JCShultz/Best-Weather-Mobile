@@ -118,7 +118,6 @@ export default class User extends Component {
     if (this.props.loggedIn) {
       list = this.props.userInfo[0].locations
     }
-
     return (
       <View style={[styles.container, { flexDirection: "column" }]}>
         <Image
@@ -138,7 +137,7 @@ export default class User extends Component {
           showsCompass={true}
           userInterfaceStyle={'dark'}
         />
-        <Text style={styles.text}>Saved Locations</Text>
+        <Text style={styles.text}>{this.props.userInfo[0].name}'s Saved Locations</Text>
         {/* <SelectList
           data={menuItems}
           maxHeight={130}
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#841584",
     fontWeight: "bold",
-    fontSize: "30pt",
+    fontSize: "25pt",
     textShadowColor: 'darkseagreen',
     textShadowOffset: { width: .75, height: .75 },
     textShadowRadius: .75
