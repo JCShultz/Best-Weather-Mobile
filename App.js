@@ -142,35 +142,32 @@ export default class App extends Component {
   DeleteLoc = (loc) => {
     // console.log('location: ', loc)
     // console.log('state before: ', this.state.userInfo[0].locations)
-    // //TODO: not functioning properly
-    this.state.userInfo[0].locations.map((location, i)=>{
-      console.log('names: ', location.name)
-      if(location.name === loc){
-        this.state.userInfo[0].locations.splice(location, 1);
-        console.log(this.state.userInfo[0].locations)
-        let locs = this.state.userInfo[0].locations;
-        this.setState({
-          userInfo: [{
-            locations: locs
-        }]
-        })
-      }
-
-    })
-    // console.log('state after: ', this.state.userInfo[0].locations)
-
 
     //post req to server to remove the location from DB:
     axios.post(`${config.ip}:${config.srvPort}/removelocation`, {
       location: loc,
       user: this.state.userInfo[0].name
     })
-    .then((res)=>{
-      console.log('response to delete req: ', res);
-    })
-    .catch((err)=>{
-      console.log('delete req error in client: ', err)
-    })
+      .then((res) => {
+        console.log('response to delete req: ', res);
+      })
+      .catch((err) => {
+        console.log('delete req error in client: ', err)
+      })
+
+
+    // axios.post(`${config.ip}:${config.srvPort}/login`, {
+    //   name: this.state.user,
+    //   pass: this.state.pass
+    // })
+    //   .then((res) => {
+    //       this.UpdateUserInfo(res.data);
+
+    //   })
+    //   .catch((err) => {
+    //     console.log('login', err);
+    //   })
+
   }
 
 
@@ -178,12 +175,12 @@ export default class App extends Component {
     //console.log("User is logged in: ", this.state.loggedIn, this.state.userInfo[0])
     return (
       <>
-        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn} logOut={this.LogOut}/>}
+        {this.state.mainView && <Main viewLogin={this.LoginView} viewCreate={this.CreateView} viewUser={this.UserView} log={this.state.loggedIn} logOut={this.LogOut} />}
         {this.state.loginView && <Login view={this.LoginView} update={this.UpdateUserInfo} />}
         {this.state.createView && <Create view={this.CreateView} />}
         {this.state.userView && <User view={this.UserView} viewSave={this.SaveLocationView} viewDetail={this.DetailView} update={this.UpdateCoordinates} list={this.state.list} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn} />}
-        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation} userInfo={this.state.userInfo} login={this.state.loggedIn}/>}
-        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo} delete={this.DeleteLoc}/>}
+        {this.state.saveLocationView && <SaveLocation view={this.SaveView} coords={this.state.coordinates} save={this.SaveLocation} userInfo={this.state.userInfo} login={this.state.loggedIn} />}
+        {this.state.locationDetailView && <LocationDetail view={this.DetailView} item={this.state.selectedItem} forecasts={this.state.forecastInfo} delete={this.DeleteLoc} />}
       </>
     );
   }

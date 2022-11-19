@@ -137,7 +137,8 @@ export default class User extends Component {
           showsCompass={true}
           userInterfaceStyle={'dark'}
         />
-        <Text style={styles.text}>{this.props.userInfo[0].name}'s Saved Locations</Text>
+        {this.props.loggedIn && <Text style={styles.text}>{this.props.userInfo[0].name}'s Locations</Text>}
+        {!this.props.loggedIn && <Text style={styles.text}>Locations</Text>}
         {/* <SelectList
           data={menuItems}
           maxHeight={130}
